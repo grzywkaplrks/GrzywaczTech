@@ -11,4 +11,3 @@ GrzywaczTech to firma zrodzona z wieloletniej pasji do technologii. Jako entuzja
 🌐 www.eralasera.pl
 
 <img width="1920" height="912" alt="Przechwycenie obrazu ekranu_2026-01-23_03-55-35" src="https://github.com/user-attachments/assets/fcb6ae9d-9071-4d7f-8b16-c06e6e56f70d" />
-
