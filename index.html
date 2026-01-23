@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrzywaczTech - Usługi IT i Wsparcie Akademickie</title>
+
+  <link rel="icon" type="image/png" href="./images/favicon.png">
+
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollToPlugin.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    (function () {
+      const saved = localStorage.getItem('color-theme');
+      const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = saved ? saved : (systemPrefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <style>
+    /* --- KLUCZOWA POPRAWKA PASKA PRZEWIJANIA (Z INDEXOLD.HTML) --- */
+    html {
+      overflow-y: scroll !important; /* Wymuś pionowy pasek zawsze na elemencie root */
+      overflow-x: hidden; /* Ukryj poziomy pasek */
+      scrollbar-gutter: stable; /* Rezerwuj miejsce na pasek, aby uniknąć przesunięć */
+      height: 100%;
+    }
+
+    body {
+      overflow-y: visible !important; /* Body nie powinno ucinać scrolla */
+      overflow-x: hidden;
+      min-height: 100vh;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: var(--dark);
+      color: var(--light);
+    }
+    /* ------------------------------------------- */
+
+    /* OPTYMALIZACJA: Zapobieganie migotaniu nagłówka */
+    .header {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
+
+    .header.py-4 {
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+    }
+
+    body.initial-loading {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --dark: #0f172a;
+      --light: #f3f4f6;
+
+      /* ZMIENNE PASKA PRZEWIJANIA (CIEMNE) */
+      --sb-track: #0f172a;
+      --sb-thumb: #334155;
+      --sb-thumb-hover: #475569;
+      --sb-border: #0f172a;
+    }
+
+    /* PASEK PRZEWIJANIA (Z INDEXOLD.HTML) */
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--sb-track); }
+    ::-webkit-scrollbar-thumb {
+        background: var(--sb-thumb);
+        border-radius: 5px;
+        border: 2px solid var(--sb-border);
+    }
+    ::-webkit-scrollbar-thumb:hover { background: var(--sb-thumb-hover); }
+    * { scrollbar-width: thin; scrollbar-color: var(--sb-thumb) var(--sb-track); }
+
+    @media (max-width: 768px) {
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-thumb { border: 1px solid var(--sb-border); }
+    }
+
+    .section-permanent {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        position: relative !important;
+        z-index: 1 !important;
+        transform: none !important;
+    }
+
+    .force-visible {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+    }
+
+    /* STYL NAWIGACJI */
+    .header-glossy {
+        background: rgba(15, 23, 42, 0.75) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: none !important;
+        transition: all 0.3s ease;
+    }
+
+    .nav-btn-pro {
+        position: relative;
+        padding: 0.5rem 1rem;
+        color: #cbd5e1;
+        font-weight: 600;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        letter-spacing: 0.01em;
+    }
+
+    .nav-btn-pro:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+        text-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+    }
+
+    .bg-hero {
+      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
+                  url('https://images.unsplash.com/photo-1516321310764-4d383dd9a70e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+      transition: background-color 0.5s ease;
+    }
+
+    .bg-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 50%);
+      z-index: 0;
+    }
+
+    .service-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .service-img::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8) 100%);
+      z-index: 1;
+    }
+
+    .service-card:hover .service-img {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    .hover-scale {
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .hover-scale:hover {
+      transform: translateY(-8px);
+    }
+
+    .bg-gradient {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    }
+
+    .btn-glow {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-glow:hover {
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+      transform: translateY(-2px);
+    }
+
+    .btn-glow::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: 0.6s;
+    }
+
+    .btn-glow:hover::after {
+      left: 100%;
+    }
+
+    .navbar { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .navbar-scrolled { background-color: rgba(15, 23, 42, 0.95) !important; }
+
+    .team-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .team-photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.4);
+    }
+
+    .section-title { position: relative; display: inline-block; }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 60%;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4); }
+      50% { box-shadow: 0 4px 20px rgba(16, 185, 129, 0.8), 0 0 20px rgba(16, 185, 129, 0.4); }
+    }
+
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+    .text-gradient {
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .card-hover { transition: all 0.3s ease; transform-style: preserve-3d; }
+    .card-hover:hover { transform: perspective(1000px) rotateY(5deg) rotateX(5deg) scale(1.02); }
+
+    .feature-icon { transition: all 0.3s ease; background: rgba(37, 99, 235, 0.1); }
+    .feature-icon:hover { transform: rotate(10deg) scale(1.1); background: rgba(37, 99, 235, 0.2); }
+
+    .incoming-label, .live-label {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      z-index: 20;
+    }
+    .incoming-label {
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      animation: pulse 2s infinite;
+    }
+    .live-label {
+      background: linear-gradient(135deg, #10b981, #059669);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .service-card { height: 100%; display: flex; flex-direction: column; }
+    .service-card-content { flex-grow: 1; display: flex; flex-direction: column; }
+
+    .mobile-menu-button {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .mobile-menu-button span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background-color: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    .mobile-menu-button.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .mobile-menu-button.active span:nth-child(2) { opacity: 0; }
+    .mobile-menu-button.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    .mobile-nav {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+      background: rgba(15, 23, 42, 0.98);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      transform: translateX(-100%); transition: transform 0.3s ease;
+    }
+    .mobile-nav.active { transform: translateX(0); }
+    .mobile-nav ul { list-style: none; padding: 0; margin: 0; text-align: center; }
+    .mobile-nav li { margin: 1.5rem 0; }
+    .mobile-nav a {
+      color: white; text-decoration: none; font-size: 1.5rem; font-weight: 500;
+      transition: color 0.3s ease; padding: 0.5rem 1rem; display: block;
+    }
+    .mobile-nav a:hover { color: #60a5fa; }
+    .close-mobile-menu {
+      position: absolute; top: 2rem; right: 2rem; background: none; border: none;
+      color: white; font-size: 2rem; cursor: pointer;
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+    }
+
+    .service-img .slide-indicators { opacity: 1; transition: opacity 0.3s ease; }
+    .service-card:hover .slide-indicators { opacity: 1; }
+    .service-img-slide {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover; background-position: center;
+      transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    }
+    .slide-current { opacity: 1; transform: scale(1); z-index: 2; }
+    .slide-next { opacity: 0; transform: scale(1.1); z-index: 1; }
+    .slide-prev { opacity: 0; transform: scale(0.9); z-index: 1; }
+
+    /* ANIMACJE */
+    .internet-slide-fade-in { animation: internetSlideFadeIn 1.5s ease-in-out forwards; }
+    .internet-slide-fade-out { animation: internetSlideFadeOut 1.5s ease-in-out forwards; }
+    /* (pozostałe animacje skrócone dla czytelności, zachowane w działaniu) */
+    @keyframes internetSlideFadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes internetSlideFadeOut { 0% { opacity: 1; } 100% { opacity: 0; } }
+    @keyframes internetSlideZoomIn { 0% { opacity: 0; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
+    @keyframes internetSlideZoomOut { 0% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(0.9); } }
+    /* ... reszta animacji ... */
+
+    @media (max-width: 1024px) {
+      .service-img-slide { position: relative !important; opacity: 1 !important; transform: none !important; animation: none !important; }
+      .slide-indicators { display: none !important; }
+      .service-card:hover .service-img { transform: none !important; }
+      .internet-slide-fade-in, .computer-slide-fade-in { animation: none !important; }
+      .header { opacity: 1 !important; visibility: visible !important; display: flex !important; }
+      .navbar { background-color: rgba(15, 23, 42, 0.95) !important; }
+      .bg-hero { background: #111827 !important; background-attachment: scroll !important; }
+      .bg-hero::before { display: none; }
+      #services { margin-top: 0; }
+      .desktop-nav { display: none; }
+      .mobile-menu-button { display: flex; }
+      .header .container { padding: 0 1rem; }
+    }
+
+    body, #root, section, .service-content, .hero-section {
+      opacity: 1 !important; visibility: visible !important; display: block !important;
+    }
+    .gsap-marker-start, .gsap-marker-end { display: none !important; }
+    #services, #pricing, #about, #contact {
+      opacity: 1 !important; visibility: visible !important; display: block !important; position: relative !important; z-index: 1 !important;
+    }
+    body:not(.initial-loading) { opacity: 1 !important; visibility: visible !important; }
+    html { scrollbar-gutter: stable; }
+    .scroll-container { overflow-anchor: none; }
+    .visibility-optimized { contain: layout style paint; }
+
+    /* =========================
+       THEME: DARK / LIGHT
+       ========================= */
+    html, body { transition: background-color 0.45s ease, color 0.45s ease; }
+    html[data-theme="dark"] { color-scheme: dark; }
+    html[data-theme="light"] { color-scheme: light; }
+
+    :root {
+      --page-bg: var(--dark);
+      --page-text: var(--light);
+      --brand-text: #ffffff;
+      --brand-subtext: rgba(191, 219, 254, 0.95);
+      --nav-bg: rgba(15, 23, 42, 0.75);
+      --nav-border: rgba(255, 255, 255, 0.08);
+      --nav-text: #cbd5e1;
+      --nav-text-hover: #ffffff;
+      --nav-hover-bg: rgba(255, 255, 255, 0.10);
+      --panel-bg: #1f2937;
+      --panel-border: #374151;
+      --muted-1: #94a3b8;
+      --muted-2: #64748b;
+      --footer-bg: #030712;
+      --footer-text: #cbd5e1;
+    }
+
+    html[data-theme="light"] {
+      --page-bg: #f8fafc;
+      --page-text: #0f172a;
+      --brand-text: #0f172a;
+      --brand-subtext: #334155;
+      --nav-bg: rgba(255, 255, 255, 0.78);
+      --nav-border: rgba(15, 23, 42, 0.10);
+      --nav-text: #334155;
+      --nav-text-hover: #0f172a;
+      --nav-hover-bg: rgba(15, 23, 42, 0.06);
+      --panel-bg: #ffffff;
+      --panel-border: #e2e8f0;
+      --muted-1: #475569;
+      --muted-2: #64748b;
+      --footer-bg: #ffffff;
+      --footer-text: #334155;
+      --sb-track: #f1f5f9;
+      --sb-thumb: #94a3b8;
+      --sb-thumb-hover: #64748b;
+      --sb-border: #f1f5f9;
+    }
+
+    body { background-color: var(--page-bg) !important; color: var(--page-text) !important; }
+    .header-glossy { background: var(--nav-bg) !important; border-bottom: 1px solid var(--nav-border) !important; }
+    .brand-text { color: var(--brand-text) !important; }
+    .brand-subtext { color: var(--brand-subtext) !important; }
+    .nav-btn-pro { color: var(--nav-text) !important; }
+    .nav-btn-pro:hover { color: var(--nav-text-hover) !important; background: var(--nav-hover-bg) !important; text-shadow: none !important; box-shadow: none !important; }
+    .desktop-nav .nav-btn-pro { text-transform: none; letter-spacing: 0.01em; font-weight: 600; font-size: 0.95rem; }
+
+    .theme-toggle-pro {
+      height: 44px; padding: 0 14px; display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 9999px; border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.06);
+      color: var(--nav-text); transition: all 0.2s ease; line-height: 1;
+    }
+    .theme-toggle-pro--compact { height: 44px; padding: 0 12px; }
+    .theme-toggle-sunmoon { display: inline-flex; align-items: center; gap: 6px; }
+    .theme-toggle-glyph { width: 20px; height: 20px; }
+    /* POGRUBIONA KRESKA IKONY MOTYWU: Zmiana font-weight na 700 + usunięcie opacity */
+    .theme-toggle-slash { font-size: 18px; font-weight: 700; line-height: 1; }
+    .theme-toggle-pro:hover { border-color: rgba(96, 165, 250, 0.35); background: rgba(255, 255, 255, 0.10); transform: translateY(-1px); }
+    html[data-theme="light"] .theme-toggle-pro { border-color: rgba(15, 23, 42, 0.12); background: rgba(15, 23, 42, 0.04); }
+    html[data-theme="light"] .theme-toggle-pro:hover { border-color: rgba(37, 99, 235, 0.25); background: rgba(15, 23, 42, 0.07); }
+
+    .nav-cta-pro {
+      display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.60rem 1.05rem;
+      border-radius: 9999px; font-weight: 800; color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.30);
+      transition: all 0.25s ease; border: 1px solid rgba(255, 255, 255, 0.10); white-space: nowrap;
+    }
+    .nav-cta-pro:hover { transform: translateY(-1px); box-shadow: 0 14px 35px rgba(37, 99, 235, 0.40); }
+    html[data-theme="light"] .nav-cta-pro { border-color: rgba(15, 23, 42, 0.08); box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10); }
+
+    html[data-theme="light"] .mobile-nav { background: rgba(248, 250, 252, 0.98); }
+    html[data-theme="light"] .mobile-nav a { color: #0f172a; }
+    html[data-theme="light"] .mobile-nav a:hover { color: #2563eb; }
+    html[data-theme="light"] .close-mobile-menu { color: #0f172a; }
+    html[data-theme="light"] .mobile-menu-button span { background-color: #0f172a; }
+
+    html[data-theme="light"] #services, html[data-theme="light"] #pricing, html[data-theme="light"] #about, html[data-theme="light"] #contact { background-color: #f8fafc !important; }
+    html[data-theme="light"] #services .bg-gray-800, html[data-theme="light"] #pricing .bg-gray-800, html[data-theme="light"] #about .bg-gray-800, html[data-theme="light"] #contact .bg-gray-800 {
+      background-color: var(--panel-bg) !important; border-color: var(--panel-border) !important; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06) !important;
+    }
+    html[data-theme="light"] .text-gray-300 { color: var(--muted-1) !important; }
+    html[data-theme="light"] .text-gray-200 { color: #0f172a !important; }
+    html[data-theme="light"] .text-gray-400 { color: var(--muted-2) !important; }
+    html[data-theme="light"] section:not(#home) .text-white { color: #0f172a !important; }
+    html[data-theme="light"] section:not(#home) .bg-blue-600.text-white { color: #ffffff !important; }
+    html[data-theme="light"] footer.bg-gray-950 { background-color: var(--footer-bg) !important; color: var(--footer-text) !important; }
+
+    /* PREMIUM LIGHT */
+    html[data-theme="light"] {
+      --page-bg: #f8fafc;
+      --page-bg-grad: radial-gradient(1200px 600px at 12% 8%, rgba(37,99,235,.14), transparent 60%), radial-gradient(900px 520px at 90% 16%, rgba(15,23,42,.10), transparent 55%), linear-gradient(180deg, #ffffff 0%, #f8fafc 35%, #e2e8f0 70%, #0b1220 140%);
+      --nav-bg: rgba(255,255,255,.70); --nav-border: rgba(15,23,42,.10);
+      --panel-bg: rgba(255,255,255,.84); --panel-border: rgba(15,23,42,.08);
+      --footer-bg: rgba(255,255,255,.78); --footer-text: #334155;
+    }
+    html[data-theme="light"] body { background-image: var(--page-bg-grad) !important; background-attachment: fixed; background-size: cover; }
+    html[data-theme="light"] #services, html[data-theme="light"] #pricing, html[data-theme="light"] #about, html[data-theme="light"] #contact { background-color: transparent !important; }
+    html[data-theme="light"] .bg-gray-800 { background-color: var(--panel-bg) !important; border-color: var(--panel-border) !important; box-shadow: 0 18px 45px rgba(15,23,42,.08) !important; backdrop-filter: blur(10px) saturate(160%); }
+    html[data-theme="light"] .card-hover:hover { box-shadow: 0 26px 70px rgba(15,23,42,.12) !important; }
+    html[data-theme="light"] .text-blue-300 { color: #1d4ed8 !important; }
+    html[data-theme="light"] .bg-hero { background: transparent !important; background-image: none !important; }
+    html[data-theme="light"] .bg-hero::before { background: none !important; opacity: 0 !important; }
+    html[data-theme="light"] #home .bg-gradient-to-t.from-gray-900.to-transparent { background-image: none !important; opacity: 0 !important; }
+    html[data-theme="light"] #home { color: #0f172a !important; }
+    html[data-theme="light"] #home .text-white { color: #0f172a !important; }
+    html[data-theme="light"] #home .hero-button, html[data-theme="light"] #home .btn-glow { color: #ffffff !important; }
+    html[data-theme="light"] #home .hero-subtitle { color: #334155 !important; }
+    html[data-theme="light"] .text-gray-300, html[data-theme="light"] .text-gray-400, html[data-theme="light"] .text-gray-200, html[data-theme="light"] p.text-gray-300 { color: #1e293b !important; }
+    html[data-theme="light"] .text-blue-400 { color: #2563eb !important; }
+    html[data-theme="light"] .text-blue-400:hover { color: #1d4ed8 !important; }
+
+    @media (max-width: 1024px) {
+      html[data-theme="light"] body { background-image: none !important; background-attachment: scroll !important; background-color: transparent !important; }
+      html[data-theme="light"] body::before { content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -9999; background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 50%, #cbd5e1 100%); background-size: cover; pointer-events: none; transform: translateZ(0); }
+      html[data-theme="light"] { background-color: #f8fafc !important; }
+    }
+
+    /* =========================
+       POPRAWKI DLA CIEMNEGO MOTYWU (DARK) - CLEAN LOOK & NO ARTIFACTS
+       ========================= */
+
+    /* 1. Tło Hero -> Transparent (zlewa się z body #0f172a) */
+    html[data-theme="dark"] .bg-hero {
+        background: transparent !important;
+        background-image: none !important;
+    }
+
+    /* 2. Ukrycie elementów dekoracyjnych w tle (koła, bloby) - ZACHOWANIE DOTÓW */
+    html[data-theme="dark"] .float-element-1,
+    html[data-theme="dark"] .float-element-2,
+    html[data-theme="dark"] .bg-hero::before,
+    html[data-theme="dark"] .bg-hero::after,
+    /* ZAMIAST #services .absolute UŻYWAMY BEZPOŚREDNIEGO DZIECKA > ABY NIE UKRYWAĆ DOTÓW */
+    html[data-theme="dark"] #services > .absolute,
+    html[data-theme="dark"] #pricing > .absolute,
+    html[data-theme="dark"] #about > .absolute,
+    html[data-theme="dark"] #contact > .absolute,
+    html[data-theme="dark"] footer > .absolute {
+        display: none !important;
+        opacity: 0 !important;
+        background: none !important;
+    }
+
+    /* 3. Płynne ukrycie gradientu dolnego w Hero (eliminacja linii odcięcia) */
+    html[data-theme="dark"] .hero-fade-overlay {
+        opacity: 0 !important;
+        visibility: hidden;
+    }
+
+    /* 4. CAŁKOWITE USUNIĘCIE CIENI (FLAT DESIGN)
+          Wyjątek: Przyciski (.btn-glow i .nav-cta-pro) oraz LIVE label zachowują cienie/glow */
+    html[data-theme="dark"] .service-card,
+    html[data-theme="dark"] .bg-gray-800.rounded-xl,
+    html[data-theme="dark"] .bg-gray-800,
+    html[data-theme="dark"] .team-photo,
+    html[data-theme="dark"] .incoming-label,
+    /* html[data-theme="dark"] .live-label, */ /* ZACHOWANO LIVE LABEL (PULSUJĄCA POŚWIATA) */
+    html[data-theme="dark"] .header.shadow-md,
+    html[data-theme="dark"] .shadow-2xl,
+    html[data-theme="dark"] .shadow-xl,
+    html[data-theme="dark"] .shadow-lg,
+    html[data-theme="dark"] .shadow-md,
+    html[data-theme="dark"] .shadow {
+        box-shadow: none !important;
+    }
+
+    /* Usunięcie cieni (glow) również przy najechaniu (hover)
+       Wyjątek: Przyciski */
+    html[data-theme="dark"] .service-card:hover,
+    html[data-theme="dark"] .bg-gray-800.rounded-xl:hover,
+    html[data-theme="dark"] .team-photo:hover,
+    html[data-theme="dark"] .nav-btn-pro:hover {
+        box-shadow: none !important;
+    }
+
+    /* Usunięcie poświaty tekstowej przy hover na nawigacji */
+    html[data-theme="dark"] .nav-btn-pro:hover {
+        text-shadow: none !important;
+    }
+
+    /* Ujednolicenie tła sekcji w Dark Mode (przezroczystość, by przebijał kolor body) */
+    html[data-theme="dark"] #services,
+    html[data-theme="dark"] #pricing,
+    html[data-theme="dark"] #about,
+    html[data-theme="dark"] #contact {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+
+    /* PRZYWRÓCENIE CIENI DLA PRZYCISKÓW (zgodnie z index.html) */
+    html[data-theme="dark"] .nav-cta-pro {
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.30) !important;
+    }
+    html[data-theme="dark"] .nav-cta-pro:hover {
+        box-shadow: 0 14px 35px rgba(37, 99, 235, 0.40) !important;
+    }
+
+  </style>
+</head>
+<body class="initial-loading">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    // POPRAWIONE I UPROSZCZONE FUNKCJE Z ZABEZPIECZENIAMI (Z INDEXOLD.HTML)
+
+    // Globalna flaga do śledzenia stanu
+    let isPageVisible = true;
+    let scrollPositionRestored = false;
+
+    // Uproszczona funkcja zapewniająca widoczność
+    const ensurePageVisibility = () => {
+        document.body.classList.remove('initial-loading');
+        document.body.style.opacity = '1';
+        document.body.style.visibility = 'visible';
+
+        // Wymuś widoczność wszystkich sekcji
+        const sections = document.querySelectorAll('section, .service-content, .hero-section, .tech-showcase-section, .contact-section, .pricing-section, .about-section');
+        sections.forEach(section => {
+            if (section) {
+                section.classList.add('section-permanent');
+                section.style.opacity = '1';
+                section.style.visibility = 'visible';
+                section.style.display = 'block';
+            }
+        });
+
+        // POPRAWKA: Upewnij się, że HTML ma pasek przewijania po powrocie (Z INDEXOLD.HTML)
+        document.documentElement.style.overflowY = 'scroll';
+        document.documentElement.style.overflowX = 'hidden';
+
+        isPageVisible = true;
+    };
+
+    const ensureHeaderVisibility = () => {
+        const header = document.querySelector('.header');
+        if (header) {
+            header.style.opacity = '1';
+            header.style.visibility = 'visible';
+            header.style.display = 'block';
+            header.classList.add('force-visible');
+        }
+        ensurePageVisibility();
+    };
+
+    const gentleScrollToTop = () => {
+        if (!scrollPositionRestored) {
+            window.scrollTo(0, 0);
+            if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+            scrollPositionRestored = true;
+        }
+    };
+
+    const showPageAfterStabilization = () => {
+        setTimeout(() => {
+            document.body.classList.remove('initial-loading');
+            ensurePageVisibility();
+        }, 100);
+    };
+
+    let activeScrollAnimations = [];
+    let isUserInteracting = false;
+
+    const clearActiveScrollAnimations = () => {
+        activeScrollAnimations.forEach(animation => {
+            if (animation && animation.progress() < 1) { animation.kill(); }
+        });
+        activeScrollAnimations = [];
+    };
+
+    const initScrollInterruption = () => {
+        const interruptionEvents = ['wheel', 'keydown', 'touchmove'];
+        interruptionEvents.forEach(eventType => {
+            window.addEventListener(eventType, handleUserInteraction, { passive: true });
+        });
+    };
+
+    const handleUserInteraction = () => {
+        if (activeScrollAnimations.length > 0) {
+            isUserInteracting = true;
+            clearActiveScrollAnimations();
+            setTimeout(() => { isUserInteracting = false; }, 100);
+        }
+    };
+
+    const smoothScrollToSection = (targetId, offsetY = 80) => {
+        if (isUserInteracting) return;
+        clearActiveScrollAnimations();
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            const originalUrl = window.location.href.split('#')[0];
+            const scrollAnimation = gsap.to(window, {
+                duration: 1.5,
+                scrollTo: { y: targetId, offsetY: offsetY, autoKill: false },
+                ease: "power2.inOut",
+                onComplete: () => {
+                    if (window.location.hash) { window.history.replaceState(null, null, originalUrl); }
+                    setTimeout(() => { activeScrollAnimations = activeScrollAnimations.filter(a => a !== scrollAnimation); }, 100);
+                }
+            });
+            activeScrollAnimations.push(scrollAnimation);
+        }
+    };
+
+    const handleNavigationFromSystemPage = (target) => {
+        if (window.location.pathname.includes('instalacja-systemow')) {
+            sessionStorage.setItem('scrollToSection', target);
+            window.location.href = '/';
+        } else {
+            smoothScrollToSection(target);
+        }
+    };
+
+    const handleScrollAfterRedirect = () => {
+        const sectionToScroll = sessionStorage.getItem('scrollToSection');
+        if (sectionToScroll) {
+            setTimeout(() => {
+                smoothScrollToSection(sectionToScroll);
+                sessionStorage.removeItem('scrollToSection');
+            }, 500);
+        }
+    };
+
+    const safeHashNavigation = () => {
+        const hash = window.location.hash;
+        if (!hash || isUserInteracting) return;
+        setTimeout(() => { smoothScrollToSection(hash); }, 100);
+    };
+
+    // Obsługa widoczności (Z INDEXOLD.HTML)
+    const handleVisibilityChange = () => {
+        if (document.hidden) {
+            // Strona jest ukryta - zatrzymaj animacje
+            if (activeScrollAnimations.length > 0) {
+                clearActiveScrollAnimations();
+            }
+        } else {
+            // Strona jest widoczna - przywróć stan
+            setTimeout(() => {
+                ensurePageVisibility();
+            }, 50);
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', ensurePageVisibility);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    window.addEventListener('focus', () => { setTimeout(ensurePageVisibility, 50); });
+    window.addEventListener('pageshow', (event) => { if (event.persisted) { setTimeout(ensurePageVisibility, 50); } });
+
+    gentleScrollToTop();
+    showPageAfterStabilization();
+    initScrollInterruption();
+
+    const usePermanentVisibility = (ref) => {
+        React.useEffect(() => {
+            const ensureVisibility = () => {
+                if (ref.current) {
+                    ref.current.style.opacity = '1';
+                    ref.current.style.visibility = 'visible';
+                    ref.current.style.display = 'block';
+                    ref.current.classList.add('force-visible');
+                }
+            };
+            ensureVisibility();
+            const interval = setInterval(ensureVisibility, 500);
+            return () => clearInterval(interval);
+        }, []);
+    };
+
+    function Header() {
+        const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+        const headerRef = React.useRef(null);
+        const [headerInitialized, setHeaderInitialized] = React.useState(false);
+        const [theme, setTheme] = React.useState(() => document.documentElement.getAttribute('data-theme') || 'dark');
+
+        const toggleTheme = () => {
+            const next = theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('color-theme', next);
+            setTheme(next);
+        };
+
+        usePermanentVisibility(headerRef);
+
+        React.useEffect(() => {
+            if (headerInitialized) return;
+            ensureHeaderVisibility();
+            const handleScroll = () => {
+                const header = headerRef.current;
+                if (!header) return;
+                if (window.scrollY > 10) { header.classList.add('shadow-md'); } else { header.classList.remove('shadow-md'); }
+            };
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            setHeaderInitialized(true);
+            return () => { window.removeEventListener('scroll', handleScroll); };
+        }, [headerInitialized]);
+
+        const handleSmoothScroll = (e, target) => {
+            e.preventDefault();
+            setMobileMenuOpen(false);
+            handleNavigationFromSystemPage(target);
+        };
+
+        const toggleMobileMenu = () => { setMobileMenuOpen(!mobileMenuOpen); };
+        const closeMobileMenu = () => { setMobileMenuOpen(false); };
+
+        return (
+            <>
+                <header ref={headerRef} className="header header-glossy fixed top-0 w-full py-3 z-50 force-visible" style={{opacity: 1, visibility: 'visible'}}>
+                    <div className="container mx-auto px-4 flex justify-between items-center">
+                        <div className="flex flex-col items-start select-none cursor-pointer" onClick={(e) => handleNavigationFromSystemPage('#home')}>
+                            <span className="text-2xl md:text-3xl font-extrabold tracking-tight brand-text leading-none">
+                                Grzywacz<span className="text-blue-500">Tech</span>
+                            </span>
+                            <span className="text-[0.65rem] md:text-[0.7rem] brand-subtext font-medium tracking-[0.2em] uppercase mt-1 whitespace-nowrap">
+                                Professional IT Solutions
+                            </span>
+                        </div>
+                        <div className="hidden md:flex items-center gap-3">
+                            <nav className="desktop-nav">
+                                <ul className="flex items-center space-x-2 md:space-x-3">
+                                    <li><a href="/" onClick={(e) => handleSmoothScroll(e, '#home')} className="nav-btn-pro block">Strona Główna</a></li>
+                                    <li><a href="/#services" onClick={(e) => handleSmoothScroll(e, '#services')} className="nav-btn-pro block">Usługi</a></li>
+                                    <li><a href="/#pricing" onClick={(e) => handleSmoothScroll(e, '#pricing')} className="nav-btn-pro block">Cennik</a></li>
+                                    <li><a href="/#about" onClick={(e) => handleSmoothScroll(e, '#about')} className="nav-btn-pro block">O mnie</a></li>
+                                </ul>
+                            </nav>
+                            <button type="button" className="theme-toggle-pro" onClick={toggleTheme} aria-label="Przełącz motyw">
+                                <span className="theme-toggle-sunmoon" aria-hidden="true">
+                                <svg className="theme-toggle-glyph" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" />
+                                    <path d="M12 2v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                    <path d="M12 20v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                    <path d="M2 12h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                    <path d="M20 12h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                    <path d="M4.22 4.22l1.42 1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                    <path d="M18.36 18.36l1.42 1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                    <path d="M4.22 19.78l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                    <path d="M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                                </svg>
+                                <span className="theme-toggle-slash">/</span>
+                                <svg className="theme-toggle-glyph" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </span>
+                            </button>
+                            <a href="/#contact" onClick={(e) => handleSmoothScroll(e, '#contact')} className="nav-cta-pro" aria-label="Kontakt">
+                                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.58-1.06a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                                <span>Kontakt</span>
+                            </a>
+                        </div>
+                        <div className="flex md:hidden items-center gap-3">
+                            <button type="button" className="theme-toggle-pro theme-toggle-pro--compact" onClick={toggleTheme}>
+                                <span className="theme-toggle-sunmoon" aria-hidden="true">
+                                <svg className="theme-toggle-glyph" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" strokeWidth="2" /><path d="M12 2v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M12 20v2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M2 12h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M20 12h2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M4.22 4.22l1.42 1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M18.36 18.36l1.42 1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M4.22 19.78l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/><path d="M18.36 5.64l1.42-1.42" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
+                                <span className="theme-toggle-slash">/</span>
+                                <svg className="theme-toggle-glyph" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            </span>
+                            </button>
+                            <button className={`mobile-menu-button ${mobileMenuOpen ? 'active' : ''}`} onClick={toggleMobileMenu} aria-label="Menu mobilne"><span></span><span></span><span></span></button>
+                        </div>
+                    </div>
+                </header>
+                <div className={`mobile-nav ${mobileMenuOpen ? 'active' : ''}`}>
+                    <button className="close-mobile-menu" onClick={closeMobileMenu} aria-label="Zamknij menu">×</button>
+                    <div className="flex flex-col items-center justify-center w-full h-full">
+                        <ul className="flex flex-col items-center justify-center w-full">
+                            <li><a href="/" onClick={(e) => handleSmoothScroll(e, '#home')} className="nav-btn-pro text-xl">Strona Główna</a></li>
+                            <li><a href="/#services" onClick={(e) => handleSmoothScroll(e, '#services')} className="nav-btn-pro text-xl">Usługi</a></li>
+                            <li><a href="/#pricing" onClick={(e) => handleSmoothScroll(e, '#pricing')} className="nav-btn-pro text-xl">Cennik</a></li>
+                            <li><a href="/#about" onClick={(e) => handleSmoothScroll(e, '#about')} className="nav-btn-pro text-xl">O mnie</a></li>
+                            <li><a href="/#contact" onClick={(e) => handleSmoothScroll(e, '#contact')} className="nav-btn-pro text-xl">Kontakt</a></li>
+                        </ul>
+                        <div className="mt-8 flex flex-col items-center select-none opacity-80 pointer-events-none">
+                            <span className="text-3xl font-extrabold tracking-tight brand-text leading-none">Grzywacz<span className="text-blue-500">Tech</span></span>
+                            <span className="text-[0.7rem] brand-subtext font-medium tracking-[0.2em] uppercase mt-1">Professional IT Solutions</span>
+                        </div>
+                    </div>
+                </div>
+            </>
+        );
+    }
+
+    function Hero() {
+        const heroRef = React.useRef(null);
+        usePermanentVisibility(heroRef);
+
+        React.useEffect(() => {
+            const tl = gsap.timeline();
+            tl.fromTo('.hero-title', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: "power3.out" })
+            .fromTo('.hero-subtitle', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }, "-=0.5")
+            .fromTo('.hero-button', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1.7)" }, "-=0.3");
+            gsap.to(".float-element-1", { y: 10, duration: 3, repeat: -1, yoyo: true, ease: "sine.inOut" });
+            gsap.to(".float-element-2", { y: -10, duration: 4, repeat: -1, yoyo: true, ease: "sine.inOut", delay: 0.5 });
+        }, []);
+
+        const handleSmoothScroll = (e) => { e.preventDefault(); smoothScrollToSection('#services'); };
+
+        return (
+            <section id="home" className="bg-hero text-white py-48 relative overflow-hidden section-permanent" ref={heroRef}>
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500 rounded-full filter blur-3xl opacity-20 float-element-1"></div>
+                    <div className="absolute bottom-20 right-20 w-40 h-40 bg-indigo-500 rounded-full filter blur-3xl opacity-20 float-element-2"></div>
+                </div>
+                <div className="container mx-auto px-4 text-center relative z-10">
+                    <h2 className="hero-title text-5xl md:text-7xl font-extrabold mb-6 leading-tight">Twoje Potrzeby, <span className="text-gradient">Moja Pasja</span></h2>
+                    <p className="hero-subtitle text-xl md:text-2xl mb-10 max-w-3xl mx-auto">Kompleksowe usługi IT i wsparcia akademickiego, które napędzają Twój sukces.</p>
+                    <a href="#services" onClick={handleSmoothScroll} className="hero-button btn-glow inline-block bg-blue-600 text-white py-4 px-10 rounded-full font-semibold text-lg hover:bg-blue-700 transition duration-300">Poznaj moje usługi</a>
+                </div>
+                {/* DODANO KLASĘ hero-fade-overlay I PŁYNNE PRZEJŚCIE */}
+                <div className="hero-fade-overlay absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-gray-900 to-transparent z-10 transition-opacity duration-700"></div>
+                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+                    <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </div>
+            </section>
+        );
+    }
+
+    // PRZYWRÓCONY KOMPONENT ServiceCard Z WERYFIKOWANYMI USTAWIENIAMI (Z INDEXOLD.HTML)
+    function ServiceCard({ title, description, image, link, incoming, slideshow, slides, serviceType }) {
+        const [currentSlide, setCurrentSlide] = React.useState(0);
+        const [prevSlide, setPrevSlide] = React.useState(0);
+        const [isTransitioning, setIsTransitioning] = React.useState(false);
+        const slideContainerRef = React.useRef(null);
+        const intervalRef = React.useRef(null);
+        const isVisibleRef = React.useRef(true);
+        const indicatorsRef = React.useRef(null); // PRZYWRÓCONO REF
+        const [isMobile, setIsMobile] = React.useState(false);
+
+        const SLIDE_DISPLAY_TIME = 5000;
+        const ANIMATION_DURATION = 1500;
+
+        const getMobileImage = () => {
+            if (!slides || slides.length === 0) return image;
+            const mobileImageMap = {
+                'Tworzenie Stron Internetowych': 2,
+                'Pomoc w pisaniu prac dyplomowych': 1,
+                'Składanie i Optymalizacja Komputerów': 0,
+                'Instalacja Systemów Operacyjnych': 0,
+                'Instalacja i Konfiguracja Oprogramowania': 4,
+                'Pomoc w doborze peryferiów komputerowych': 0
+            };
+            const imageIndex = mobileImageMap[title];
+            return slides[imageIndex] || image;
+        };
+
+        React.useEffect(() => {
+            const checkMobile = () => { setIsMobile(window.innerWidth <= 1024); };
+            checkMobile();
+            window.addEventListener('resize', checkMobile);
+            return () => { window.removeEventListener('resize', checkMobile); };
+        }, []);
+
+        const internetAnimations = [
+            { in: 'internet-slide-fade-in', out: 'internet-slide-fade-out' },
+            { in: 'internet-slide-zoom-in', out: 'internet-slide-zoom-out' },
+            { in: 'internet-slide-slide-in-left', out: 'internet-slide-slide-out-left' },
+            { in: 'internet-slide-slide-in-right', out: 'internet-slide-slide-out-right' },
+            { in: 'internet-slide-flip-in', out: 'internet-slide-flip-out' },
+            { in: 'internet-slide-bounce-in', out: 'internet-slide-bounce-out' },
+            { in: 'internet-slide-rotate-in', out: 'internet-slide-rotate-out' },
+            { in: 'internet-slide-blur-in', out: 'internet-slide-blur-out' },
+            { in: 'internet-slide-wave-in', out: 'internet-slide-wave-out' }
+        ];
+
+        const computerAnimations = [
+            { in: 'computer-slide-fade-in', out: 'computer-slide-fade-out' },
+            { in: 'computer-slide-zoom-in', out: 'computer-slide-zoom-out' },
+            { in: 'computer-slide-slide-in-top', out: 'computer-slide-slide-out-top' },
+            { in: 'computer-slide-slide-in-bottom', out: 'computer-slide-slide-out-bottom' },
+            { in: 'computer-slide-rotate-in', out: 'computer-slide-rotate-out' },
+            { in: 'computer-slide-flip-in', out: 'computer-slide-flip-out' },
+            { in: 'computer-slide-wipe-in', out: 'computer-slide-wipe-out' },
+            { in: 'computer-slide-pixel-in', out: 'computer-slide-pixel-out' },
+            { in: 'computer-slide-matrix-in', out: 'computer-slide-matrix-out' }
+        ];
+
+        const getAnimations = () => {
+            return serviceType === 'internet' ? internetAnimations : computerAnimations;
+        };
+
+        const getSynchronizedAnimation = () => {
+            const animations = getAnimations();
+            const currentTime = Math.floor(Date.now() / SLIDE_DISPLAY_TIME);
+            return animations[currentTime % animations.length];
+        };
+
+        React.useEffect(() => {
+            const handleVisibilityChange = () => {
+                isVisibleRef.current = !document.hidden;
+                if (!document.hidden && slideshow && slides && !isMobile) {
+                    clearInterval(intervalRef.current);
+                    startSlideshow();
+                }
+            };
+            document.addEventListener('visibilitychange', handleVisibilityChange);
+            return () => {
+                document.removeEventListener('visibilitychange', handleVisibilityChange);
+                if (intervalRef.current) { clearInterval(intervalRef.current); }
+            };
+        }, [slideshow, slides, isMobile]);
+
+        const startSlideshow = () => {
+            if (!slideshow || !slides || !isVisibleRef.current || isMobile) return;
+            intervalRef.current = setInterval(() => {
+                setPrevSlide(currentSlide);
+                setCurrentSlide(prev => (prev + 1) % slides.length);
+            }, SLIDE_DISPLAY_TIME);
+        };
+
+        React.useEffect(() => {
+            if (!slideshow || !slides || isMobile) return;
+            startSlideshow();
+            return () => { if (intervalRef.current) { clearInterval(intervalRef.current); } };
+        }, [slideshow, slides, isMobile]);
+
+        React.useEffect(() => {
+            if (slideshow && slideContainerRef.current && slides.length > 0 && !isMobile) {
+                setIsTransitioning(true);
+                const animation = getSynchronizedAnimation();
+                requestAnimationFrame(() => {
+                    const allSlides = slideContainerRef.current.querySelectorAll('.service-img-slide');
+                    allSlides.forEach((slide, index) => {
+                        const allAnimationClasses = [
+                            'internet-slide-fade-in', 'internet-slide-fade-out',
+                            'internet-slide-zoom-in', 'internet-slide-zoom-out',
+                            'internet-slide-slide-in-left', 'internet-slide-slide-out-left',
+                            'internet-slide-slide-in-right', 'internet-slide-slide-out-right',
+                            'internet-slide-flip-in', 'internet-slide-flip-out',
+                            'internet-slide-bounce-in', 'internet-slide-bounce-out',
+                            'internet-slide-rotate-in', 'internet-slide-rotate-out',
+                            'internet-slide-blur-in', 'internet-slide-blur-out',
+                            'internet-slide-wave-in', 'internet-slide-wave-out',
+                            'computer-slide-fade-in', 'computer-slide-fade-out',
+                            'computer-slide-zoom-in', 'computer-slide-zoom-out',
+                            'computer-slide-slide-in-top', 'computer-slide-slide-out-top',
+                            'computer-slide-slide-in-bottom', 'computer-slide-slide-out-bottom',
+                            'computer-slide-rotate-in', 'computer-slide-rotate-out',
+                            'computer-slide-flip-in', 'computer-slide-flip-out',
+                            'computer-slide-wipe-in', 'computer-slide-wipe-out',
+                            'computer-slide-pixel-in', 'computer-slide-pixel-out',
+                            'computer-slide-matrix-in', 'computer-slide-matrix-out'
+                        ];
+                        slide.classList.remove(...allAnimationClasses);
+                        if (index === currentSlide) {
+                            slide.style.opacity = '1';
+                            slide.style.zIndex = '2';
+                            slide.classList.add(animation.in);
+                        } else if (index === prevSlide && prevSlide !== currentSlide) {
+                            slide.style.zIndex = '1';
+                            slide.classList.add(animation.out);
+                        } else {
+                            slide.style.opacity = '0';
+                            slide.style.zIndex = '0';
+                        }
+                    });
+                    setTimeout(() => { setIsTransitioning(false); }, ANIMATION_DURATION);
+                });
+            }
+        }, [currentSlide, slideshow, isMobile]);
+
+        // PRZYWRÓCONA FUNKCJA AKTUALIZACJI WSKAŹNIKÓW (Z INDEXOLD.HTML)
+        const updateIndicators = () => {
+            if (!indicatorsRef.current || isMobile) return;
+            const indicators = indicatorsRef.current.children;
+            for (let i = 0; i < indicators.length; i++) {
+                const indicator = indicators[i];
+                if (i === currentSlide) {
+                    gsap.to(indicator, { duration: 0.3, backgroundColor: '#3b82f6', scale: 1.2 });
+                } else {
+                    gsap.to(indicator, { duration: 0.3, backgroundColor: 'rgba(255, 255, 255, 0.7)', scale: 1 });
+                }
+            }
+        };
+
+        React.useEffect(() => {
+            updateIndicators();
+        }, [currentSlide]);
+
+        const handleClick = () => { if (link) { window.location.href = link; } };
+        const CardTag = link ? 'a' : 'div';
+
+        return (
+            <CardTag
+                href={link || null}
+                className={`service-card bg-gray-800 p-6 rounded-xl shadow-2xl hover-scale card-hover ${link ? 'cursor-pointer' : ''} block`}
+                style={{ textDecoration: 'none' }}
+                onClick={!link ? handleClick : undefined}
+            >
+                <div className="service-img mb-4 relative overflow-hidden">
+                    {slideshow && slides && !isMobile ? (
+                        <>
+                            <div ref={slideContainerRef} className="w-full h-full relative">
+                                {slides.map((slide, index) => (
+                                    <div key={index} className={`service-img-slide ${index === currentSlide ? 'slide-current' : 'slide-next'}`} style={{ backgroundImage: `url(${slide})` }}></div>
+                                ))}
+                            </div>
+                            <div
+                                ref={indicatorsRef}
+                                className="slide-indicators absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20"
+                            >
+                                {slides.map((_, index) => (
+                                    <div
+                                        key={index}
+                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentSlide ? 'bg-blue-500 scale-125' : 'bg-white/70'}`}
+                                    ></div>
+                                ))}
+                            </div>
+                        </>
+                    ) : (
+                        <div className="service-img-slide slide-current w-full h-full" style={{ backgroundImage: `url(${isMobile && slides ? getMobileImage() : image})` }}></div>
+                    )}
+                    {incoming ? ( <div className="incoming-label">INCOMING</div> ) : ( <div className="live-label">LIVE</div> )}
+                </div>
+                <div className="service-card-content">
+                    <h3 className="text-xl md:text-2xl font-semibold mb-3 text-white">{title}</h3>
+                    <p className="text-gray-300">{description}</p>
+                </div>
+            </CardTag>
+        );
+    }
+
+    function Services() {
+        const servicesRef = React.useRef(null);
+        usePermanentVisibility(servicesRef);
+        React.useEffect(() => { gsap.registerPlugin(ScrollTrigger); gsap.utils.toArray('.service-item').forEach((item, i) => { gsap.from(item, { scrollTrigger: { trigger: item, start: "top 80%", toggleActions: "play none none none" }, y: 50, opacity: 0, duration: 0.8, delay: i * 0.1, ease: "back.out(1)" }); }); gsap.from('.services-title', { scrollTrigger: { trigger: '#services', start: "top 90%", toggleActions: "play none none none" }, y: 30, opacity: 0, duration: 1, ease: "power3.out" }); gsap.from('.category-title', { scrollTrigger: { trigger: '.category-title', start: "top 80%", toggleActions: "play none none none" }, x: -30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" }); }, []);
+        const internetServices = [ { title: 'Tworzenie Stron Internetowych', description: 'Projektuję nowoczesne, responsywne strony internetowe, które łączą estetykę z funkcjonalnością.', image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', incoming: true, slideshow: true, serviceType: 'internet', slides: [ 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' ] }, { title: 'Pomoc w pisaniu prac dyplomowych', description: 'Oferuję profesjonalne wsparcie w pisaniu prac dyplomowych, zapewniając wysoką jakość i zgodność z wymogami akademickimi.', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', incoming: true, slideshow: true, serviceType: 'internet', slides: [ 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' ] } ];
+        const computerServices = [ { title: 'Składanie i Optymalizacja Komputerów', description: 'Tworzę wydajne komputery gamingowe i stacje robocze dostosowane do Twoich potrzeb.', image: './images/adrenalin.png', incoming: true, slideshow: true, serviceType: 'computer', slides: [ 'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', './images/adrenalin.png', './images/cs2.png' ] }, { title: 'Instalacja Systemów Operacyjnych', description: 'Zapewniam profesjonalną instalację i konfigurację systemów Windows, Linux i innych.', image: './images/8888.png', link: 'instalacja-systemow', incoming: false, slideshow: true, serviceType: 'computer', slides: [ './images/8888.png', './images/0004.png', './images/w11.png', './images/mint.png', './images/zorin.png' ] }, { title: 'Instalacja i Konfiguracja Oprogramowania', description: 'Oferuję kompleksowe wsparcie w doborze i konfiguracji oprogramowania dla firm i osób prywatnych.', image: './images/9999.png', incoming: true, slideshow: true, serviceType: 'computer', slides: [ './images/9999.png', './images/cyberpunk2077.png', './images/getui.png', './images/ytmusic.png', './images/afterburner.png' ] }, { title: 'Pomoc w doborze peryferiów komputerowych', description: 'Doradzam w wyborze klawiatur, myszy, monitorów i innych akcesoriów, aby zoptymalizować Twoje stanowisko pracy.', image: 'https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', incoming: true, slideshow: true, serviceType: 'computer', slides: [ 'https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' ] } ];
+        return ( <section id="services" className="py-24 bg-gray-900 relative overflow-hidden section-permanent" ref={servicesRef}> <div className="absolute top-0 left-0 w-full h-full opacity-5"> <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl animate-pulse"></div> <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-500 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div> </div> <div className="container mx-auto px-4 relative z-10"> <h2 className="services-title section-title text-4xl md:text-5xl font-extrabold text-center mb-16 text-white">Moje Usługi</h2> <h3 className="category-title text-2xl md:text-3xl font-semibold mb-8 text-blue-300">Usługi Internetowe</h3> <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"> {internetServices.map((service, index) => ( <div key={service.title} className="service-item"> <ServiceCard {...service} /> </div> ))} </div> <h3 className="category-title text-2xl md:text-3xl font-semibold mb-8 text-blue-300">Usługi Komputerowe</h3> <div className="grid grid-cols-1 md:grid-cols-2 gap-8"> {computerServices.map((service, index) => ( <div key={service.title} className="service-item"> <ServiceCard {...service} /> </div> ))} </div> </div> </section> );
+    }
+
+    function Pricing() {
+        const pricingRef = React.useRef(null);
+        usePermanentVisibility(pricingRef);
+        const handleSmoothScroll = (e) => { e.preventDefault(); smoothScrollToSection('#contact'); };
+        React.useEffect(() => { gsap.from('.pricing-content', { scrollTrigger: { trigger: '#pricing', start: "top 80%", toggleActions: "play none none none" }, y: 50, opacity: 0, duration: 1, ease: "power3.out" }); }, []);
+        return ( <section id="pricing" className="py-24 bg-gray-900 relative overflow-hidden section-permanent" ref={pricingRef}> <div className="absolute inset-0 opacity-5"> <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl"></div> <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-500 rounded-full filter blur-3xl"></div> </div> <div className="container mx-auto px-4 text-center relative z-10 pricing-content"> <h2 className="text-4xl md:text-5xl font-extrabold mb-6 text-white"><span className="text-gradient">Cennik</span></h2> <p className="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-300">Skontaktuj się ze mną, aby otrzymać indywidualną wycenę dostosowaną do Twoich potrzeb.</p> <a href="#contact" onClick={handleSmoothScroll} className="btn-glow inline-block bg-blue-600 text-white py-4 px-10 rounded-full font-semibold text-lg hover:bg-blue-700 transition duration-300">Zapytaj o wycenę</a> </div> </section> );
+    }
+
+    function About() {
+        const aboutRef = React.useRef(null);
+        usePermanentVisibility(aboutRef);
+        const handleSmoothScroll = (e) => { e.preventDefault(); smoothScrollToSection('#contact'); };
+        React.useEffect(() => { gsap.from('.about-title', { scrollTrigger: { trigger: '#about', start: "top 80%", toggleActions: "play none none none" }, y: 30, opacity: 0, duration: 1, ease: "power3.out" }); gsap.from('.team-member', { scrollTrigger: { trigger: '.team-member', start: "top 80%", toggleActions: "play none none none" }, y: 50, opacity: 0, stagger: 0.2, duration: 0.8, ease: "back.out(1)" }); gsap.from('.about-text', { scrollTrigger: { trigger: '.about-text', start: "top 80%", toggleActions: "play none none none" }, y: 30, opacity: 0, duration: 1, delay: 0.3, ease: "power3.out" }); gsap.from('.about-button', { scrollTrigger: { trigger: '.about-button', start: "top 80%", toggleActions: "play none none none" }, y: 20, opacity: 0, duration: 0.8, delay: 0.5, ease: "back.out(1.7)" }); }, []);
+        return ( <section id="about" className="py-24 bg-gray-900 relative overflow-hidden section-permanent" ref={aboutRef}> <div className="absolute inset-0 opacity-5"> <div className="absolute top-1/3 left-1/4 w-48 h-48 bg-blue-500 rounded-full filter blur-3xl animate-float"></div> <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-indigo-500 rounded-full filter blur-3xl animate-float" style={{ animationDelay: '1s' }}></div> </div> <div className="container mx-auto px-4 text-center relative z-10"> <h2 className="about-title text-4xl md:text-5xl font-extrabold mb-6 text-white"><span className="text-gradient">O mnie</span></h2> <div className="flex flex-col md:flex-row justify-center items-stretch md:space-x-8 mb-6 md:mb-8"> <div className="team-member text-center w-full md:w-80 mb-6 md:mb-0 flex flex-col items-center"> <img src="./images/76764.jpg" alt="Bartłomiej Grzywacz" className="team-photo mx-auto" style={{ width: '200px', height: '200px' }} /> <h3 className="text-xl md:text-2xl font-semibold text-white mb-3">Bartłomiej Grzywacz</h3> <p className="text-gray-300 flex-grow min-h-[60px] text-sm md:text-base">Absolwent Akademii Wychowania Fizycznego im. Polskich Olimpijczyków we Wrocławiu</p> </div> </div> <p className="about-text text-xl md:text-2xl mb-8 md:mb-10 max-w-3xl mx-auto text-gray-300">Nazywam się Bartłomiej i od wielu lat pasjonuję się technologią. Jestem entuzjastą systemów Linux oraz Windows, a swoją pasję łączę z wiedzą, doświadczeniem i zaangażowaniem, by świadczyć kompleksowe usługi informatyczne. Tworzę nowoczesne strony internetowe, pomagam w pisaniu prac dyplomowych oraz oferuję szeroki zakres usług komputerowych – od składania i optymalizacji komputerów, poprzez instalację systemów i oprogramowania, aż po doradztwo w zakresie doboru sprzętu. Moim celem jest dostarczanie niezawodnych, nowoczesnych i indywidualnie dopasowanych rozwiązań, które ułatwiają codzienną pracę i wspierają rozwój moich klientów.</p> <a href="#contact" onClick={handleSmoothScroll} className="about-button btn-glow inline-block bg-blue-600 text-white py-4 px-10 rounded-full font-semibold text-lg hover:bg-blue-700 transition duration-300">Dowiedz się więcej</a> </div> </section> );
+    }
+
+    function Contact() {
+        const contactRef = React.useRef(null);
+        usePermanentVisibility(contactRef);
+        return ( <section id="contact" className="py-24 bg-gray-900 relative overflow-hidden section-permanent" ref={contactRef}> <div className="absolute inset-0 opacity-10"> <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl opacity-20"></div> <div className="absolute bottom-0 right-0 w-64 h-64 bg-indigo-500 rounded-full filter blur-3xl opacity-20"></div> </div> <div className="container mx-auto px-4 relative z-10"> <div className="text-center mb-16"> <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-4"><span className="text-gradient">Skontaktuj się ze mną</span></h2> <p className="text-xl text-gray-300 max-w-2xl mx-auto">Skontaktuj się ze mną i przekonaj się, jak GrzywaczTech może ułatwić Ci życie – technicznie, praktycznie, profesjonalnie.</p> </div> <div className="max-w-4xl mx-auto"> <div className="bg-gray-800 rounded-xl p-8 shadow-2xl border border-gray-700"> <h3 className="text-3xl font-bold text-white mb-8">Dane kontaktowe</h3> <div className="grid grid-cols-1 md:grid-cols-2 gap-8"> <div className="flex items-start"> <div className="flex-shrink-0 bg-blue-600/10 p-3 rounded-lg"> <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg> </div> <div className="ml-4"> <h4 className="text-xl font-semibold text-gray-200">Email</h4> <a href="mailto:grzywacztech@gmail.com" className="text-blue-400 hover:text-blue-300 transition-colors block mt-1 text-lg md:text-xl font-medium">grzywacztech@gmail.com</a> <p className="text-base text-gray-400 mt-1">Odpowiadam w ciągu 24h</p> </div> </div> <div className="flex items-start"> <div className="flex-shrink-0 bg-blue-600/10 p-3 rounded-lg"> <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg> </div> <div className="ml-4"> <h4 className="text-xl font-semibold text-gray-200">WhatsApp/Telefon</h4> <a href="tel:+48790260595" className="text-blue-400 hover:text-blue-300 transition-colors block mt-1 text-lg md:text-xl font-medium">+48 790 260 595</a> <p className="text-base text-gray-400 mt-1">Pon-Sob: 9:00-18:00</p> </div> </div> </div> </div> </div> </div> </section> );
+    }
+
+    function Footer() {
+        return ( <footer className="bg-gray-950 text-gray-300 pt-10 pb-[calc(2.5rem+env(safe-area-inset-bottom))] relative overflow-hidden"> <div className="absolute inset-0 opacity-5"> <div className="absolute top-0 left-1/3 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl"></div> </div> <div className="w-full px-6 md:px-12 relative z-10 footer-content"> <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6"> <div className="flex flex-col items-center md:items-start select-none cursor-pointer" role="button" tabIndex={0} onClick={() => handleNavigationFromSystemPage('#home')} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleNavigationFromSystemPage('#home'); } }} aria-label="Przejdź do góry"> <span className="text-2xl md:text-3xl font-extrabold tracking-tight brand-text leading-none"> Grzywacz<span className="text-blue-500">Tech</span> </span> <span className="text-[0.65rem] md:text-[0.7rem] brand-subtext font-medium tracking-[0.2em] uppercase mt-1"> Professional IT Solutions </span> </div> <div className="text-sm text-center md:text-right leading-relaxed"> <p>© 2026 GrzywaczTech. Bartłomiej Grzywacz. Wszystkie prawa zastrzeżone.</p> <p className="mt-1">Stworzone z pasją do technologii i innowacji.</p> </div> </div> </div> </footer> );
+    }
+
+    function App() {
+        React.useEffect(() => {
+            gentleScrollToTop();
+            safeHashNavigation();
+            handleScrollAfterRedirect();
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+                document.body.style.visibility = 'visible';
+                document.body.classList.remove('initial-loading');
+                ensurePageVisibility();
+            }, 100);
+            const images = [ 'https://images.unsplash.com/photo-1516321310764-4d383dd9a70e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80', 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', './images/07076.png', './images/8888.png', './images/9999.png', './images/5555.png', './images/76764.jpg', './images/111222.jpg', './images/0004.png', './images/w11.png', './images/mint.png', './images/zorin.png', './images/cyberpunk2077.png', './images/getui.png', './images/ytmusic.png', './images/afterburner.png', './images/adrenalin.png', './images/cs2.png', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' ];
+            images.forEach((src) => { new Image().src = src; });
+        }, []);
+
+        return (
+            <div className="overflow-x-hidden scroll-container force-visible">
+                <Header />
+                <Hero />
+                <Services />
+                <Pricing />
+                <About />
+                <Contact />
+                <Footer />
+            </div>
+        );
+    }
+
+    window.reactRoot = ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
