@@ -6,7 +6,7 @@ GrzywaczTech to firma zrodzona z wieloletniej pasji do technologii. Jako entuzja
 
 ✉️ grzywacztech@gmail.com
 
-🤝 Partnerzy biznesowi/nasze realizacje:
+🤝 Partnerzy biznesowi:
 
 🌐 www.eralasera.pl
 
