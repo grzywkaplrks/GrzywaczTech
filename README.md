@@ -15,4 +15,4 @@ GrzywaczTech to firma zrodzona z wieloletniej pasji do technologii. Jako entuzja
 <img width="1920" height="912" alt="Przechwycenie obrazu ekranu_2026-01-23_02-39-45" src="https://github.com/user-attachments/assets/d5807e1b-7cc6-48c2-b29d-8c705643ac3e" />
 
 <img width="1048" height="782" alt="Przechwycenie obrazu ekranu_2026-01-23_04-03-51" src="https://github.com/user-attachments/assets/0e4e538d-c701-401d-ac4b-20a62e4b430e" />
-Damian Drzewoski EraLasera (po lewej) Bartłomiej Grzywacz GrzywaczTech (po prawej)
+Damian Drzewoski - EraLasera (po lewej) Bartłomiej Grzywacz - GrzywaczTech (po prawej)
