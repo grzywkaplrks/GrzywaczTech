@@ -4,6 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GrzywaczTech - Usługi IT i Wsparcie Akademickie</title>
+  <meta name="description" content="Twój partner w świecie technologii. Budowa stron internetowych, optymalizacja PC i korekta prac dyplomowych.">
 
   <link rel="icon" type="image/png" href="./images/favicon.png">
 
@@ -705,7 +706,7 @@
     };
 
     const handleNavigationFromSystemPage = (target) => {
-        if (window.location.pathname.includes('instalacja-systemow')) {
+        if (window.location.pathname.includes('instalacja-systemow') || window.location.pathname.includes('stronyinternetowe')) {
             sessionStorage.setItem('scrollToSection', target);
             window.location.href = '/';
         } else {
@@ -1126,8 +1127,99 @@
         const servicesRef = React.useRef(null);
         usePermanentVisibility(servicesRef);
         React.useEffect(() => { gsap.registerPlugin(ScrollTrigger); gsap.utils.toArray('.service-item').forEach((item, i) => { gsap.from(item, { scrollTrigger: { trigger: item, start: "top 80%", toggleActions: "play none none none" }, y: 50, opacity: 0, duration: 0.8, delay: i * 0.1, ease: "back.out(1)" }); }); gsap.from('.services-title', { scrollTrigger: { trigger: '#services', start: "top 90%", toggleActions: "play none none none" }, y: 30, opacity: 0, duration: 1, ease: "power3.out" }); gsap.from('.category-title', { scrollTrigger: { trigger: '.category-title', start: "top 80%", toggleActions: "play none none none" }, x: -30, opacity: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" }); }, []);
-        const internetServices = [ { title: 'Tworzenie Stron Internetowych', description: 'Projektuję nowoczesne, responsywne strony internetowe, które łączą estetykę z funkcjonalnością.', image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', incoming: true, slideshow: true, serviceType: 'internet', slides: [ 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' ] }, { title: 'Pomoc w pisaniu prac dyplomowych', description: 'Oferuję profesjonalne wsparcie w pisaniu prac dyplomowych, zapewniając wysoką jakość i zgodność z wymogami akademickimi.', image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', incoming: true, slideshow: true, serviceType: 'internet', slides: [ 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' ] } ];
-        const computerServices = [ { title: 'Składanie i Optymalizacja Komputerów', description: 'Tworzę wydajne komputery gamingowe i stacje robocze dostosowane do Twoich potrzeb.', image: './images/adrenalin.png', incoming: true, slideshow: true, serviceType: 'computer', slides: [ 'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', './images/adrenalin.png', './images/cs2.png' ] }, { title: 'Instalacja Systemów Operacyjnych', description: 'Zapewniam profesjonalną instalację i konfigurację systemów Windows, Linux i innych.', image: './images/8888.png', link: 'instalacja-systemow', incoming: false, slideshow: true, serviceType: 'computer', slides: [ './images/8888.png', './images/0004.png', './images/w11.png', './images/mint.png', './images/zorin.png' ] }, { title: 'Instalacja i Konfiguracja Oprogramowania', description: 'Oferuję kompleksowe wsparcie w doborze i konfiguracji oprogramowania dla firm i osób prywatnych.', image: './images/9999.png', incoming: true, slideshow: true, serviceType: 'computer', slides: [ './images/9999.png', './images/cyberpunk2077.png', './images/getui.png', './images/ytmusic.png', './images/afterburner.png' ] }, { title: 'Pomoc w doborze peryferiów komputerowych', description: 'Doradzam w wyborze klawiatur, myszy, monitorów i innych akcesoriów, aby zoptymalizować Twoje stanowisko pracy.', image: 'https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', incoming: true, slideshow: true, serviceType: 'computer', slides: [ 'https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' ] } ];
+        
+        // ZMIENIONE: incoming: true na false i dodany link dla "Tworzenie Stron Internetowych"
+        const internetServices = [ 
+          { 
+            title: 'Tworzenie Stron Internetowych', 
+            description: 'Projektuję nowoczesne, responsywne strony internetowe, które łączą estetykę z funkcjonalnością.', 
+            image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+            link: 'stronyinternetowe',  // DODANE - link do nowej podstrony
+            incoming: false,  // ZMIENIONE z true na false = LIVE
+            slideshow: true, 
+            serviceType: 'internet', 
+            slides: [ 
+              'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+              'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+              'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+              'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' 
+            ] 
+          }, 
+          { 
+            title: 'Pomoc w pisaniu prac dyplomowych', 
+            description: 'Oferuję profesjonalne wsparcie w pisaniu prac dyplomowych, zapewniając wysoką jakość i zgodność z wymogami akademickimi.', 
+            image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+            incoming: true, 
+            slideshow: true, 
+            serviceType: 'internet', 
+            slides: [ 
+              'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+              'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+              'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+              'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' 
+            ] 
+          } 
+        ];
+        
+        const computerServices = [ 
+          { 
+            title: 'Składanie i Optymalizacja Komputerów', 
+            description: 'Tworzę wydajne komputery gamingowe i stacje robocze dostosowane do Twoich potrzeb.', 
+            image: './images/adrenalin.png', 
+            incoming: true, 
+            slideshow: true, 
+            serviceType: 'computer', 
+            slides: [ 
+              'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+              './images/adrenalin.png', 
+              './images/cs2.png' 
+            ] 
+          }, 
+          { 
+            title: 'Instalacja Systemów Operacyjnych', 
+            description: 'Zapewniam profesjonalną instalację i konfigurację systemów Windows, Linux i innych.', 
+            image: './images/8888.png', 
+            link: 'instalacja-systemow', 
+            incoming: false, 
+            slideshow: true, 
+            serviceType: 'computer', 
+            slides: [ 
+              './images/8888.png', 
+              './images/0004.png', 
+              './images/w11.png', 
+              './images/mint.png', 
+              './images/zorin.png' 
+            ] 
+          }, 
+          { 
+            title: 'Instalacja i Konfiguracja Oprogramowania', 
+            description: 'Oferuję kompleksowe wsparcie w doborze i konfiguracji oprogramowania dla firm i osób prywatnych.', 
+            image: './images/9999.png', 
+            incoming: true, 
+            slideshow: true, 
+            serviceType: 'computer', 
+            slides: [ 
+              './images/9999.png', 
+              './images/cyberpunk2077.png', 
+              './images/getui.png', 
+              './images/ytmusic.png', 
+              './images/afterburner.png' 
+            ] 
+          }, 
+          { 
+            title: 'Pomoc w doborze peryferiów komputerowych', 
+            description: 'Doradzam w wyborze klawiatur, myszy, monitorów i innych akcesoriów, aby zoptymalizować Twoje stanowisko pracy.', 
+            image: 'https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+            incoming: true, 
+            slideshow: true, 
+            serviceType: 'computer', 
+            slides: [ 
+              'https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 
+              'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' 
+            ] 
+          } 
+        ];
+        
         return ( <section id="services" className="py-24 bg-gray-900 relative overflow-hidden section-permanent" ref={servicesRef}> <div className="absolute top-0 left-0 w-full h-full opacity-5"> <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl animate-pulse"></div> <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-indigo-500 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div> </div> <div className="container mx-auto px-4 relative z-10"> <h2 className="services-title section-title text-4xl md:text-5xl font-extrabold text-center mb-16 text-white">Moje Usługi</h2> <h3 className="category-title text-2xl md:text-3xl font-semibold mb-8 text-blue-300">Usługi Internetowe</h3> <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"> {internetServices.map((service, index) => ( <div key={service.title} className="service-item"> <ServiceCard {...service} /> </div> ))} </div> <h3 className="category-title text-2xl md:text-3xl font-semibold mb-8 text-blue-300">Usługi Komputerowe</h3> <div className="grid grid-cols-1 md:grid-cols-2 gap-8"> {computerServices.map((service, index) => ( <div key={service.title} className="service-item"> <ServiceCard {...service} /> </div> ))} </div> </div> </section> );
     }
 
@@ -1154,32 +1246,134 @@
     }
 
     function Footer() {
-        return ( <footer className="bg-gray-950 text-gray-300 pt-10 pb-[calc(2.5rem+env(safe-area-inset-bottom))] relative overflow-hidden"> <div className="absolute inset-0 opacity-5"> <div className="absolute top-0 left-1/3 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl"></div> </div> <div className="w-full px-6 md:px-12 relative z-10 footer-content"> <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6"> <div className="flex flex-col items-center md:items-start select-none cursor-pointer" role="button" tabIndex={0} onClick={() => handleNavigationFromSystemPage('#home')} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleNavigationFromSystemPage('#home'); } }} aria-label="Przejdź do góry"> <span className="text-2xl md:text-3xl font-extrabold tracking-tight brand-text leading-none"> Grzywacz<span className="text-blue-500">Tech</span> </span> <span className="text-[0.65rem] md:text-[0.7rem] brand-subtext font-medium tracking-[0.2em] uppercase mt-1"> Professional IT Solutions </span> </div> <div className="text-sm text-center md:text-right leading-relaxed"> <p>© 2026 GrzywaczTech. Bartłomiej Grzywacz. Wszystkie prawa zastrzeżone.</p> <p className="mt-1">Stworzone z pasją do technologii i innowacji.</p> </div> </div> </div> </footer> );
-    }
+    return (
+        <footer className="bg-gray-950 text-gray-300 pt-10 pb-[calc(2.5rem+env(safe-area-inset-bottom))] relative overflow-hidden">
+            <div className="absolute inset-0 opacity-5">
+                <div className="absolute top-0 left-1/3 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl"></div>
+            </div>
+
+            <div className="w-full px-6 md:px-12 relative z-10 footer-content">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                    <div className="flex flex-col items-center md:items-start select-none cursor-pointer" role="button" tabIndex={0} onClick={() => handleNavigationFromSystemPage('#home')} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleNavigationFromSystemPage('#home'); } }} aria-label="Przejdź do góry">
+                        <span className="text-2xl md:text-3xl font-extrabold tracking-tight brand-text leading-none">
+                            Grzywacz<span className="text-blue-500">Tech</span>
+                        </span>
+                        <span className="text-[0.65rem] md:text-[0.7rem] brand-subtext font-medium tracking-[0.2em] uppercase mt-1">
+                            Professional IT Solutions
+                        </span>
+                    </div>
+
+                    <div className="text-sm text-center md:text-right leading-relaxed">
+                        <div className="flex items-center justify-center md:justify-end gap-2 mb-2 flex-wrap md:flex-nowrap">
+                            <a href="https://github.com/grzywkaplrks" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300 flex-shrink-0 self-center" aria-label="Mój profil GitHub">
+                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                                </svg>
+                            </a>
+                            <p className="flex-grow md:flex-grow-0">© 2026 GrzywaczTech. Bartłomiej Grzywacz. Wszystkie prawa zastrzeżone.</p>
+                        </div>
+                        <p className="mt-1">Stworzone z pasją do technologii i innowacji.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    );
+}
 
     function App() {
         React.useEffect(() => {
-            gentleScrollToTop();
-            safeHashNavigation();
-            handleScrollAfterRedirect();
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-                document.body.style.visibility = 'visible';
+            // 1. ZABLOKUJ DOMYŚLNE ZACHOWANIE PRZEGLĄDARKI (Skok do kotwicy)
+            if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
+
+            // 2. WYMUŚ START OD GÓRY
+            window.scrollTo(0, 0);
+
+            if (typeof gentleScrollToTop === 'function') {
+                gentleScrollToTop();
+            }
+
+            // 3. OPÓŹNIONE POKAZANIE TREŚCI I PŁYNNE PRZEWINIĘCIE
+            const timer = setTimeout(() => {
                 document.body.classList.remove('initial-loading');
-                ensurePageVisibility();
+
+                if (typeof ensurePageVisibility === 'function') {
+                    ensurePageVisibility();
+                } else {
+                    document.body.style.opacity = '1';
+                    document.body.style.visibility = 'visible';
+                }
+
+                const sections = document.querySelectorAll('section, .service-section, .service-content');
+                sections.forEach(section => {
+                    section.style.opacity = '1';
+                    section.style.visibility = 'visible';
+                });
+
+                // ==========================================
+                // NOWA LOGIKA PRZEWIJANIA Z PODSTRON
+                // ==========================================
+                const sectionToScroll = sessionStorage.getItem('scrollToSection');
+
+                // PRZYPADEK 1: Zwykłe kliknięcie w menu na podstronie (dane czekały w sessionStorage)
+                if (sectionToScroll) {
+                    const targetElem = document.querySelector(sectionToScroll);
+                    if (targetElem) {
+                        gsap.to(window, {
+                            duration: 1.5,
+                            delay: 0.3, // Opóźnienie, aby strona się w pełni wyrenderowała
+                            scrollTo: {
+                                y: targetElem,
+                                offsetY: 80
+                            },
+                            ease: "power3.inOut",
+                            onComplete: () => {
+                                // Sprzątamy pamięć po wykonanym zjeździe
+                                sessionStorage.removeItem('scrollToSection');
+                            }
+                        });
+                    } else {
+                        sessionStorage.removeItem('scrollToSection');
+                    }
+                }
+                // PRZYPADEK 2: Środkowy przycisk myszy / wejście ze skopiowanego linku (hash w URL)
+                else if (window.location.hash) {
+                    const targetHash = window.location.hash;
+                    const targetElem = document.querySelector(targetHash);
+
+                    if (targetElem) {
+                        gsap.to(window, {
+                            duration: 1.5,
+                            delay: 0.3,
+                            scrollTo: {
+                                y: targetElem,
+                                offsetY: 80
+                            },
+                            ease: "power3.inOut",
+                            onComplete: () => {
+                                // UKRYWANIE "#" W PASKU ADRESU PO ZAKOŃCZENIU ANIMACJI
+                                const originalUrl = window.location.href.split('#')[0];
+                                window.history.replaceState(null, null, originalUrl);
+                            }
+                        });
+                    }
+                }
             }, 100);
-            const images = [ 'https://images.unsplash.com/photo-1516321310764-4d383dd9a70e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80', 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', './images/07076.png', './images/8888.png', './images/9999.png', './images/5555.png', './images/76764.jpg', './images/111222.jpg', './images/0004.png', './images/w11.png', './images/mint.png', './images/zorin.png', './images/cyberpunk2077.png', './images/getui.png', './images/ytmusic.png', './images/afterburner.png', './images/adrenalin.png', './images/cs2.png', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1547082299-de196ea013d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1593640408182-31c70c8268f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80', 'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80' ];
-            images.forEach((src) => { new Image().src = src; });
+
+            return () => clearTimeout(timer);
         }, []);
 
         return (
-            <div className="overflow-x-hidden scroll-container force-visible">
+            <div className="min-h-screen">
                 <Header />
                 <Hero />
-                <Services />
-                <Pricing />
-                <About />
-                <Contact />
+                <div id="content-wrapper" className="relative z-10">
+                    <Services />
+                    <Pricing />
+                    <About />
+                    <Contact />
+                </div>
                 <Footer />
             </div>
         );

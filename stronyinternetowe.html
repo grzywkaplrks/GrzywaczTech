@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GrzywaczTech - Instalacja Systemów Operacyjnych</title>
+  <title>GrzywaczTech - Tworzenie Stron Internetowych</title>
 
   <link rel="icon" type="image/png" href="./images/favicon.png">
 
@@ -416,329 +416,6 @@
       padding: 4rem 0;
     }
 
-    .comparison-container {
-      position: relative;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      background: #0f172a;
-    }
-
-    .comparison-container-mobile {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-      background: #0f172a; /* Domyślne ciemne tło (dla dark mode) */
-    }
-
-    .comparison-slider {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 4px;
-      background: linear-gradient(to bottom, #3b82f6, #2563eb, #1d4ed8, #2563eb, #3b82f6);
-      cursor: ew-resize;
-      z-index: 10;
-      transform: translateX(-50%);
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .comparison-slider::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, #3b82f6, #2563eb, #1d4ed8);
-      border-radius: 50%;
-      border: 4px solid white;
-      box-shadow: 0 0 25px rgba(37, 99, 235, 0.8);
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .comparison-slider::after {
-      content: '↔';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-      background: linear-gradient(135deg, #ffffff, #e0f2fe);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .comparison-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-user-drag: none;
-      -khtml-user-drag: none;
-      -moz-user-drag: none;
-      -o-user-drag: none;
-      user-drag: none;
-    }
-
-    .comparison-image-vertical {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-      border-radius: 0;
-      display: block;
-    }
-
-    .comparison-before {
-      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
-    }
-
-    .comparison-label {
-      position: absolute;
-      top: 20px;
-      padding: 10px 20px;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      border-radius: 25px;
-      font-weight: 600;
-      z-index: 5;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    .comparison-label-vertical {
-      padding: 8px 16px;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      border-radius: 20px;
-      font-weight: 600;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      margin-bottom: 1rem;
-      display: inline-block;
-    }
-
-    .comparison-label-before {
-      left: 20px;
-      background: linear-gradient(135deg, rgba(237, 28, 36, 0.8), rgba(148, 28, 36, 0.8));
-    }
-
-    .comparison-label-before-vertical {
-      background: linear-gradient(135deg, rgba(237, 28, 36, 0.8), rgba(148, 28, 36, 0.8));
-    }
-
-    .comparison-label-after {
-      right: 20px;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(30, 64, 175, 0.9), rgba(37, 99, 235, 0.9));
-    }
-
-    .comparison-label-after-vertical {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(30, 64, 175, 0.9), rgba(37, 99, 235, 0.9));
-    }
-
-    .performance-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin: 3rem 0;
-    }
-
-    .stat-card {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
-      padding: 2rem;
-      border-radius: 15px;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .stat-card:hover::before {
-      left: 100%;
-    }
-
-    .stat-value {
-      font-size: 3rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--nvidia-green), var(--primary));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      color: var(--gray);
-      font-size: 1.1rem;
-    }
-
-    .tech-showcase-section {
-      background: rgba(30, 41, 59, 0.5);
-      border-radius: 25px;
-      padding: 4rem;
-      margin: 4rem 0;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* USUNIĘTO PSEUDO-ELEMENT ::BEFORE, KTÓRY TWORZYŁ NIEBIESKĄ LINIĘ */
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .feature-item {
-      background: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
-      padding: 2rem;
-      border-radius: 15px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-item:hover {
-      transform: translateY(-10px);
-      border-color: var(--primary);
-      box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
-    }
-
-    .feature-icon {
-      width: 60px;
-      height: 60px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-
-    .technologies-section {
-      background: rgba(30, 41, 59, 0.3);
-      border-radius: 15px;
-      padding: 2rem;
-    }
-
-    .tech-link {
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      min-height: 120px;
-      display: flex;
-      align-items: center;
-    }
-
-    .tech-link:hover {
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
-    }
-
-    .tech-emoji-card {
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      position: relative;
-      overflow: hidden;
-      min-height: 120px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .tech-emoji-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
-      transition: left 0.7s ease;
-    }
-
-    .tech-emoji-card:hover::before {
-      left: 100%;
-    }
-
-    .emoji-animation {
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0) scale(1);
-      }
-      40% {
-        transform: translateY(-8px) scale(1.05);
-      }
-      60% {
-        transform: translateY(-4px) scale(1.02);
-      }
-    }
-
-    @keyframes pulse-glow {
-      0%, 100% {
-        filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.4));
-      }
-      50% {
-        filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.6));
-      }
-    }
-
-    .tech-emoji-card:hover .emoji-animation {
-      animation: bounce 1s infinite, pulse-glow 2s infinite;
-    }
-
     .contact-section {
       background: rgba(30, 41, 59, 0.5);
       border-radius: 20px;
@@ -919,34 +596,6 @@
         transform: translateX(0);
       }
 
-      .tech-comparison {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .comparison-divider {
-        width: 80%;
-        height: 2px;
-        margin: 0 auto;
-      }
-
-      .comparison-divider::before {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      .tech-tabs {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .tech-tab {
-        width: 100%;
-        max-width: 300px;
-      }
-
       .hero-section {
         min-height: 50vh;
         text-align: center;
@@ -960,41 +609,6 @@
       .hero-subtitle {
         font-size: 1.1rem !important;
         padding: 0 1rem;
-      }
-
-      .performance-stats {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .tech-showcase-section {
-        padding: 2rem;
-        margin: 2rem 0;
-        border-radius: 15px;
-      }
-
-      .feature-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
-
-      .comparison-container {
-        height: 400px !important;
-      }
-
-      .comparison-slider::before {
-        width: 50px;
-        height: 50px;
-      }
-
-      .comparison-slider::after {
-        font-size: 16px;
-      }
-
-      .comparison-label {
-        padding: 8px 16px;
-        font-size: 0.9rem;
-        top: 15px;
       }
 
       .contact-section {
@@ -1023,25 +637,6 @@
       .social-media {
         flex-direction: column;
         gap: 0.5rem;
-      }
-
-      .tech-link,
-      .tech-emoji-card {
-        min-height: 100px;
-        padding: 1.5rem;
-      }
-
-      .technologies-section {
-        padding: 1.5rem;
-      }
-
-      .feature-item {
-        padding: 1.5rem;
-      }
-
-      .feature-icon {
-        width: 50px;
-        height: 50px;
       }
 
       .desktop-nav {
@@ -1073,31 +668,6 @@
       .feature-badge {
         font-size: 0.7rem;
         padding: 0.3rem 0.6rem;
-      }
-
-      .tech-showcase-section h2 {
-        font-size: 2rem !important;
-      }
-
-      .tech-showcase-section p {
-        font-size: 1.1rem !important;
-      }
-
-      .tech-tabs button {
-        padding: 1rem 1.5rem;
-        font-size: 1rem;
-      }
-
-      .stat-card {
-        padding: 1.5rem;
-      }
-
-      .stat-value {
-        font-size: 2.5rem;
-      }
-
-      .stat-label {
-        font-size: 1rem;
       }
     }
 
@@ -1142,41 +712,6 @@
         font-size: 1rem !important;
       }
 
-      .tech-showcase-section {
-        padding: 1.5rem;
-        margin: 1.5rem 0;
-      }
-
-      .comparison-container {
-        display: none !important;
-      }
-
-      .comparison-container-mobile {
-        display: block !important;
-      }
-
-      .comparison-image-vertical {
-        border-radius: 8px !important;
-      }
-
-      .comparison-label-vertical {
-        padding: 10px 16px;
-        min-height: 42px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .mobile-title-center {
-        text-align: center !important;
-        display: block !important;
-      }
-
-      .mobile-title-center .rocket-emoji {
-        display: inline-block;
-        margin-left: 0.5rem;
-      }
-
       .contact-section {
         padding: 1.5rem;
       }
@@ -1187,10 +722,6 @@
 
       .content-inner h3 {
         font-size: 1.6rem !important;
-      }
-
-      .tech-showcase-section h2 {
-        font-size: 1.8rem !important;
       }
     }
 
@@ -1222,17 +753,6 @@
         padding: 1rem;
       }
 
-      .tech-showcase-section {
-        padding: 1rem;
-        margin: 1rem 0;
-      }
-
-      .comparison-label-vertical {
-        font-size: 0.8rem;
-        padding: 8px 12px;
-        min-height: 38px;
-      }
-
       .contact-section {
         padding: 1rem;
       }
@@ -1251,15 +771,6 @@
     }
 
     @media (hover: none) and (pointer: coarse) {
-      .comparison-slider {
-        width: 6px;
-      }
-
-      .comparison-slider::before {
-        width: 50px;
-        height: 50px;
-      }
-
       .feature-item:hover,
       .contact-item:hover,
       .social-item:hover {
@@ -1267,24 +778,9 @@
       }
     }
 
-    .comparison-container-mobile {
-      display: none;
-    }
-
-    @media (max-width: 768px) {
-      .comparison-container {
-        display: none !important;
-      }
-
-      .comparison-container-mobile {
-        display: block !important;
-      }
-    }
-
     /* ZAPOBIEGANIE ZNIKANIU ELEMENTÓW PO POWROCIE Z KARTY */
     .service-content,
     .hero-section,
-    .tech-showcase-section,
     .contact-section {
       opacity: 1 !important;
       visibility: visible !important;
@@ -1390,50 +886,50 @@
     .desktop-nav .nav-btn-pro {
       text-transform: none;
       letter-spacing: 0.01em;
-font-weight: 600;
-font-size: 0.95rem;
+      font-weight: 600;
+      font-size: 0.95rem;
     }
 
     /* Premium theme toggle (styl jak EraLasera) */
-.theme-toggle-pro {
-  height: 44px;            /* match Contact CTA pill height */
-  padding: 0 14px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--nav-text);
-  transition: all 0.2s ease;
-  line-height: 1;
-}
+    .theme-toggle-pro {
+      height: 44px;            /* match Contact CTA pill height */
+      padding: 0 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--nav-text);
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
 
-.theme-toggle-pro--compact { height: 44px; padding: 0 12px; }
+    .theme-toggle-pro--compact { height: 44px; padding: 0 12px; }
 
-.theme-toggle-icon { width: 18px; height: 18px; }
+    .theme-toggle-icon { width: 18px; height: 18px; }
 
-/* Sun / Moon symbol (☀ / ☾) like EraLasera – bez nachodzenia */
-.theme-toggle-sunmoon { display: inline-flex; align-items: center; gap: 6px; }
-.theme-toggle-glyph { width: 20px; height: 20px; }
-.theme-toggle-slash { font-size: 18px; font-weight: 700; line-height: 1; }
+    /* Sun / Moon symbol (☀ / ☾) like EraLasera – bez nachodzenia */
+    .theme-toggle-sunmoon { display: inline-flex; align-items: center; gap: 6px; }
+    .theme-toggle-glyph { width: 20px; height: 20px; }
+    .theme-toggle-slash { font-size: 18px; font-weight: 700; line-height: 1; }
 
-.theme-toggle-pro:hover {
-  border-color: rgba(96, 165, 250, 0.35);
-  background: rgba(255, 255, 255, 0.10);
-  transform: translateY(-1px);
-}
+    .theme-toggle-pro:hover {
+      border-color: rgba(96, 165, 250, 0.35);
+      background: rgba(255, 255, 255, 0.10);
+      transform: translateY(-1px);
+    }
 
-html[data-theme="light"] .theme-toggle-pro {
-  border-color: rgba(15, 23, 42, 0.12);
-  background: rgba(15, 23, 42, 0.04);
-}
+    html[data-theme="light"] .theme-toggle-pro {
+      border-color: rgba(15, 23, 42, 0.12);
+      background: rgba(15, 23, 42, 0.04);
+    }
 
-html[data-theme="light"] .theme-toggle-pro:hover {
-  border-color: rgba(37, 99, 235, 0.25);
-  background: rgba(15, 23, 42, 0.07);
-}
-/* Contact CTA with phone icon (not uppercase) */
+    html[data-theme="light"] .theme-toggle-pro:hover {
+      border-color: rgba(37, 99, 235, 0.25);
+      background: rgba(15, 23, 42, 0.07);
+    }
+    /* Contact CTA with phone icon (not uppercase) */
     .nav-cta-pro {
       display: inline-flex;
       align-items: center;
@@ -1457,27 +953,6 @@ html[data-theme="light"] .theme-toggle-pro:hover {
     html[data-theme="light"] .nav-cta-pro {
       border-color: rgba(15, 23, 42, 0.08);
       box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
-    }
-
-    /* Mobile quick phone icon */
-    .mobile-phone-pro {
-      width: 42px;
-      height: 42px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 9999px;
-      background: rgba(37, 99, 235, 0.18);
-      border: 1px solid rgba(96, 165, 250, 0.25);
-      color: #93c5fd;
-      transition: all 0.2s ease;
-    }
-    .mobile-phone-pro:hover { transform: translateY(-1px); }
-
-    html[data-theme="light"] .mobile-phone-pro {
-      background: rgba(37, 99, 235, 0.10);
-      border-color: rgba(37, 99, 235, 0.18);
-      color: #2563eb;
     }
 
     /* Mobile drawer */
@@ -1533,404 +1008,291 @@ html[data-theme="light"] .theme-toggle-pro:hover {
     html[data-theme="light"] * { scrollbar-color: #94a3b8 #e2e8f0; }
 
 
-/* =========================
-   PREMIUM LIGHT: Pearl → Ink
-   ========================= */
-html[data-theme="light"]{
-  /* fallback solid */
-  --page-bg: #f8fafc;
+    /* =========================
+       PREMIUM LIGHT: Pearl → Ink
+       ========================= */
+    html[data-theme="light"]{
+      /* fallback solid */
+      --page-bg: #f8fafc;
 
-  /* premium page gradient */
-  --page-bg-grad:
-    radial-gradient(1200px 600px at 12% 8%, rgba(37,99,235,.14), transparent 60%),
-    radial-gradient(900px 520px at 90% 16%, rgba(15,23,42,.10), transparent 55%),
-    linear-gradient(180deg, #ffffff 0%, #f8fafc 35%, #e2e8f0 70%, #0b1220 140%);
+      /* premium page gradient */
+      --page-bg-grad:
+        radial-gradient(1200px 600px at 12% 8%, rgba(37,99,235,.14), transparent 60%),
+        radial-gradient(900px 520px at 90% 16%, rgba(15,23,42,.10), transparent 55%),
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 35%, #e2e8f0 70%, #0b1220 140%);
 
-  /* glossy nav + subtle borders */
-  --nav-bg: rgba(255,255,255,.70);
-  --nav-border: rgba(15,23,42,.10);
+      /* glossy nav + subtle borders */
+      --nav-bg: rgba(255,255,255,.70);
+      --nav-border: rgba(15,23,42,.10);
 
-  /* glass panels */
-  --panel-bg: rgba(255,255,255,.84);
-  --panel-border: rgba(15,23,42,.08);
+      /* glass panels */
+      --panel-bg: rgba(255,255,255,.84);
+      --panel-border: rgba(15,23,42,.08);
 
-  /* footer */
-  --footer-bg: rgba(255,255,255,.78);
-  --footer-text: #334155;
-}
+      /* footer */
+      --footer-bg: rgba(255,255,255,.78);
+      --footer-text: #334155;
+    }
 
-/* page background (color + gradient) */
-body{
-  background-color: var(--page-bg) !important;
-  background-image: var(--page-bg-grad) !important;
-  background-attachment: fixed;
-  background-size: cover;
-}
+    /* page background (color + gradient) */
+    body{
+      background-color: var(--page-bg) !important;
+      background-image: var(--page-bg-grad) !important;
+      background-attachment: fixed;
+      background-size: cover;
+    }
 
-/* let the gradient show through big sections (index has these ids) */
-html[data-theme="light"] #services,
-html[data-theme="light"] #pricing,
-html[data-theme="light"] #about,
-html[data-theme="light"] #contact{
-  background-color: transparent !important;
-}
+    /* let the gradient show through big sections (index has these ids) */
+    html[data-theme="light"] #services,
+    html[data-theme="light"] #pricing,
+    html[data-theme="light"] #about,
+    html[data-theme="light"] #contact{
+      background-color: transparent !important;
+    }
 
-/* convert "dark panels" into premium glass cards in light mode */
-html[data-theme="light"] .bg-gray-800{
-  background-color: var(--panel-bg) !important;
-  border-color: var(--panel-border) !important;
-  box-shadow: 0 18px 45px rgba(15,23,42,.08) !important;
-  backdrop-filter: blur(10px) saturate(160%);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
-}
+    /* convert "dark panels" into premium glass cards in light mode */
+    html[data-theme="light"] .bg-gray-800{
+      background-color: var(--panel-bg) !important;
+      border-color: var(--panel-border) !important;
+      box-shadow: 0 18px 45px rgba(15,23,42,.08) !important;
+      backdrop-filter: blur(10px) saturate(160%);
+      -webkit-backdrop-filter: blur(10px) saturate(160%);
+    }
 
-html[data-theme="light"] .card-hover:hover{
-  box-shadow: 0 26px 70px rgba(15,23,42,.12) !important;
-}
+    html[data-theme="light"] .card-hover:hover{
+      box-shadow: 0 26px 70px rgba(15,23,42,.12) !important;
+    }
 
-/* tabs / buttons based on gray utilities */
-html[data-theme="light"] .border-gray-700{ border-color: var(--panel-border) !important; }
-html[data-theme="light"] .hover\:bg-gray-700:hover{ background-color: rgba(15,23,42,.04) !important; }
+    /* tabs / buttons based on gray utilities */
+    html[data-theme="light"] .border-gray-700{ border-color: var(--panel-border) !important; }
+    html[data-theme="light"] .hover\:bg-gray-700:hover{ background-color: rgba(15,23,42,.04) !important; }
 
-/* ensure accent text stays readable */
-html[data-theme="light"] .text-blue-300{ color: #1d4ed8 !important; }
+    /* ensure accent text stays readable */
+    html[data-theme="light"] .text-blue-300{ color: #1d4ed8 !important; }
 
-/* premium focus ring */
-html[data-theme="light"] a:focus-visible,
-html[data-theme="light"] button:focus-visible{
-  outline: 3px solid rgba(37,99,235,.35);
-  outline-offset: 2px;
-  border-radius: 12px;
-}
-
-
-
-/* =========================
-   Pearl LIGHT: make opacity gray cards white (match index services boxes)
-   ========================= */
-
-/* Tailwind opacity utilities create classes with slashes (e.g. bg-gray-800/50).
-   In LIGHT mode we want them to behave like white "panel" cards. */
-html[data-theme="light"] .bg-gray-800\/50,
-html[data-theme="light"] .bg-gray-700\/70{
-  background-color: var(--panel-bg) !important;
-  border-color: var(--panel-border) !important;
-  box-shadow: 0 18px 45px rgba(15,23,42,.08) !important;
-  backdrop-filter: blur(10px) saturate(160%);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
-}
-
-/* If any cards use transparent backgrounds, keep them readable on Pearl */
-html[data-theme="light"] .bg-transparent.border-gray-700{
-  border-color: var(--panel-border) !important;
-}
+    /* premium focus ring */
+    html[data-theme="light"] a:focus-visible,
+    html[data-theme="light"] button:focus-visible{
+      outline: 3px solid rgba(37,99,235,.35);
+      outline-offset: 2px;
+      border-radius: 12px;
+    }
 
 
 
-/* =========================
-   Pearl LIGHT: make ALL big gray sections white + readable text
-   Targets custom "huge boxes" like:
-   - side-by-side-showcase (Wszystkie Systemy)
-   - tech-showcase-section (Przyśpiesz swój komputer)
-   - service-section / technologies-section / contact-section etc.
-   ========================= */
+    /* =========================
+       Pearl LIGHT: make opacity gray cards white (match index services boxes)
+       ========================= */
 
-html[data-theme="light"]{
-  --card-text: #0f172a;
-  --card-muted: #475569;
-  --card-body: #334155;
-}
+    /* Tailwind opacity utilities create classes with slashes (e.g. bg-gray-800/50).
+       In LIGHT mode we want them to behave like white "panel" cards. */
+    html[data-theme="light"] .bg-gray-800\/50,
+    html[data-theme="light"] .bg-gray-700\/70{
+      background-color: var(--panel-bg) !important;
+      border-color: var(--panel-border) !important;
+      box-shadow: 0 18px 45px rgba(15,23,42,.08) !important;
+      backdrop-filter: blur(10px) saturate(160%);
+      -webkit-backdrop-filter: blur(10px) saturate(160%);
+    }
 
-/* Big container boxes -> white glass cards */
-html[data-theme="light"] .service-section,
-html[data-theme="light"] .side-by-side-showcase,
-html[data-theme="light"] .tech-showcase-section,
-html[data-theme="light"] .technologies-section,
-html[data-theme="light"] .contact-section{
-  background: var(--panel-bg) !important;
-  border: 1px solid var(--panel-border) !important;
-  box-shadow: 0 18px 45px rgba(15,23,42,.08) !important;
-  backdrop-filter: blur(10px) saturate(160%);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
-  color: var(--card-text);
-}
+    /* If any cards use transparent backgrounds, keep them readable on Pearl */
+    html[data-theme="light"] .bg-transparent.border-gray-700{
+      border-color: var(--panel-border) !important;
+    }
 
-/* Inner halves that were dark -> transparent (so the whole box stays white) */
-html[data-theme="light"] .side-by-side-showcase .content-side,
-html[data-theme="light"] .side-by-side-showcase .image-side{
-  background: transparent !important;
-}
 
-/* Remove dark overlays inside those big sections (if present) */
-html[data-theme="light"] .tech-showcase-section::before,
-html[data-theme="light"] .contact-section::before{
-  background: none !important;
-  opacity: 0 !important;
-}
 
-/* Smaller “cards” inside sections -> also white (so nothing stays gray) */
-html[data-theme="light"] .system-card,
-html[data-theme="light"] .stat-card,
-html[data-theme="light"] .feature-item,
-html[data-theme="light"] .contact-item,
-html[data-theme="light"] .social-item{
-  background: var(--panel-bg) !important;
-  border: 1px solid var(--panel-border) !important;
-  box-shadow: 0 14px 35px rgba(15,23,42,.08) !important;
-  color: var(--card-text);
-}
+    /* =========================
+       Pearl LIGHT: make ALL big gray sections white + readable text
+       Targets custom "huge boxes" like:
+       - side-by-side-showcase (Moje Realizacje)
+       - service-section / contact-section etc.
+       ========================= */
 
-/* Text contrast inside the big white boxes (avoid breaking white text on blue buttons) */
-html[data-theme="light"] .service-section h1.text-white,
-html[data-theme="light"] .service-section h2.text-white,
-html[data-theme="light"] .service-section h3.text-white,
-html[data-theme="light"] .service-section h4.text-white,
-html[data-theme="light"] .side-by-side-showcase h1.text-white,
-html[data-theme="light"] .side-by-side-showcase h2.text-white,
-html[data-theme="light"] .side-by-side-showcase h3.text-white,
-html[data-theme="light"] .side-by-side-showcase h4.text-white,
-html[data-theme="light"] .tech-showcase-section h1.text-white,
-html[data-theme="light"] .tech-showcase-section h2.text-white,
-html[data-theme="light"] .tech-showcase-section h3.text-white,
-html[data-theme="light"] .tech-showcase-section h4.text-white,
-html[data-theme="light"] .technologies-section h1.text-white,
-html[data-theme="light"] .technologies-section h2.text-white,
-html[data-theme="light"] .technologies-section h3.text-white,
-html[data-theme="light"] .technologies-section h4.text-white,
-html[data-theme="light"] .contact-section h1.text-white,
-html[data-theme="light"] .contact-section h2.text-white,
-html[data-theme="light"] .contact-section h3.text-white,
-html[data-theme="light"] .contact-section h4.text-white{
-  color: var(--card-text) !important;
-}
+    html[data-theme="light"]{
+      --card-text: #0f172a;
+      --card-muted: #475569;
+      --card-body: #334155;
+    }
 
-html[data-theme="light"] .service-section p.text-gray-400,
-html[data-theme="light"] .side-by-side-showcase p.text-gray-400,
-html[data-theme="light"] .tech-showcase-section p.text-gray-400,
-html[data-theme="light"] .technologies-section p.text-gray-400,
-html[data-theme="light"] .contact-section p.text-gray-400{
-  color: var(--card-muted) !important;
-}
+    /* Big container boxes -> white glass cards */
+    html[data-theme="light"] .service-section,
+    html[data-theme="light"] .side-by-side-showcase,
+    html[data-theme="light"] .contact-section{
+      background: var(--panel-bg) !important;
+      border: 1px solid var(--panel-border) !important;
+      box-shadow: 0 18px 45px rgba(15,23,42,.08) !important;
+      backdrop-filter: blur(10px) saturate(160%);
+      -webkit-backdrop-filter: blur(10px) saturate(160%);
+      color: var(--card-text);
+    }
 
-html[data-theme="light"] .service-section p.text-gray-300,
-html[data-theme="light"] .service-section p.text-gray-200,
-html[data-theme="light"] .side-by-side-showcase p.text-gray-300,
-html[data-theme="light"] .side-by-side-showcase p.text-gray-200,
-html[data-theme="light"] .tech-showcase-section p.text-gray-300,
-html[data-theme="light"] .tech-showcase-section p.text-gray-200,
-html[data-theme="light"] .technologies-section p.text-gray-300,
-html[data-theme="light"] .technologies-section p.text-gray-200,
-html[data-theme="light"] .contact-section p.text-gray-300,
-html[data-theme="light"] .contact-section p.text-gray-200{
-  color: var(--card-body) !important;
-}
+    /* Inner halves that were dark -> transparent (so the whole box stays white) */
+    html[data-theme="light"] .side-by-side-showcase .content-side,
+    html[data-theme="light"] .side-by-side-showcase .image-side{
+      background: transparent !important;
+    }
 
-/* Lists often use gray classes too */
-html[data-theme="light"] .service-section li.text-gray-300,
-html[data-theme="light"] .service-section li.text-gray-200,
-html[data-theme="light"] .side-by-side-showcase li.text-gray-300,
-html[data-theme="light"] .side-by-side-showcase li.text-gray-200,
-html[data-theme="light"] .tech-showcase-section li.text-gray-300,
-html[data-theme="light"] .tech-showcase-section li.text-gray-200,
-html[data-theme="light"] .technologies-section li.text-gray-300,
-html[data-theme="light"] .technologies-section li.text-gray-200,
-html[data-theme="light"] .contact-section li.text-gray-300,
-html[data-theme="light"] .contact-section li.text-gray-200{
-  color: var(--card-body) !important;
-}
+    /* Remove dark overlays inside those big sections (if present) */
+    html[data-theme="light"] .contact-section::before{
+      background: none !important;
+      opacity: 0 !important;
+    }
 
-/* Optional: mobile menu should also be light in light theme */
-html[data-theme="light"] .mobile-nav{
-  background: rgba(255,255,255,.92) !important;
-}
+    /* Smaller "cards" inside sections -> also white (so nothing stays gray) */
+    html[data-theme="light"] .system-card,
+    html[data-theme="light"] .contact-item,
+    html[data-theme="light"] .social-item{
+      background: var(--panel-bg) !important;
+      border: 1px solid var(--panel-border) !important;
+      box-shadow: 0 14px 35px rgba(15,23,42,.08) !important;
+      color: var(--card-text);
+    }
 
-/* =========================
-   POPRAWKA: Widoczność napisów w sekcji "Technologie" (Jasny Motyw)
-   ========================= */
+    /* Text contrast inside the big white boxes (avoid breaking white text on blue buttons) */
+    html[data-theme="light"] .service-section h1.text-white,
+    html[data-theme="light"] .service-section h2.text-white,
+    html[data-theme="light"] .service-section h3.text-white,
+    html[data-theme="light"] .service-section h4.text-white,
+    html[data-theme="light"] .side-by-side-showcase h1.text-white,
+    html[data-theme="light"] .side-by-side-showcase h2.text-white,
+    html[data-theme="light"] .side-by-side-showcase h3.text-white,
+    html[data-theme="light"] .side-by-side-showcase h4.text-white,
+    html[data-theme="light"] .contact-section h1.text-white,
+    html[data-theme="light"] .contact-section h2.text-white,
+    html[data-theme="light"] .contact-section h3.text-white,
+    html[data-theme="light"] .contact-section h4.text-white{
+      color: var(--card-text) !important;
+    }
 
-/* Zmiana koloru tytułów (np. AMD FidelityFX, DLSS) na ciemny */
-html[data-theme="light"] .tech-link .text-white,
-html[data-theme="light"] .tech-emoji-card .text-white {
-  color: #0f172a !important;
-}
+    html[data-theme="light"] .service-section p.text-gray-400,
+    html[data-theme="light"] .side-by-side-showcase p.text-gray-400,
+    html[data-theme="light"] .contact-section p.text-gray-400{
+      color: var(--card-muted) !important;
+    }
 
-/* Zmiana koloru podpisów (np. AMD, NVIDIA, Opis) na ciemniejszy szary */
-html[data-theme="light"] .tech-link .text-gray-400,
-html[data-theme="light"] .tech-emoji-card .text-gray-300 {
-  color: #475569 !important;
-}
+    html[data-theme="light"] .service-section p.text-gray-300,
+    html[data-theme="light"] .service-section p.text-gray-200,
+    html[data-theme="light"] .side-by-side-showcase p.text-gray-300,
+    html[data-theme="light"] .side-by-side-showcase p.text-gray-200,
+    html[data-theme="light"] .contact-section p.text-gray-300,
+    html[data-theme="light"] .contact-section p.text-gray-200{
+      color: var(--card-body) !important;
+    }
 
-/* Zmiana koloru tekstu przy najechaniu myszką (Hover) w jasnym motywie
-   (Domyślny blue-300 jest zbyt jasny na białym tle, zmieniamy na ciemniejszy niebieski) */
-html[data-theme="light"] .tech-link:hover .text-white,
-html[data-theme="light"] .tech-emoji-card:hover .text-white {
-  color: #2563eb !important;
-}
+    /* Lists often use gray classes too */
+    html[data-theme="light"] .service-section li.text-gray-300,
+    html[data-theme="light"] .service-section li.text-gray-200,
+    html[data-theme="light"] .side-by-side-showcase li.text-gray-300,
+    html[data-theme="light"] .side-by-side-showcase li.text-gray-200,
+    html[data-theme="light"] .contact-section li.text-gray-300,
+    html[data-theme="light"] .contact-section li.text-gray-200{
+      color: var(--card-body) !important;
+    }
 
-/* =========================
-   POPRAWKA: Ujednolicenie tekstów w jasnym motywie (Globalnie)
-   ========================= */
+    /* Optional: mobile menu should also be light in light theme */
+    html[data-theme="light"] .mobile-nav{
+      background: rgba(255,255,255,.92) !important;
+    }
 
-/* Wszystkie szare teksty na ciemny kolor w jasnym motywie */
-html[data-theme="light"] .text-gray-300,
-html[data-theme="light"] .text-gray-400,
-html[data-theme="light"] .text-gray-200,
-html[data-theme="light"] .text-gray-500,
-html[data-theme="light"] p.text-gray-300,
-html[data-theme="light"] p.text-gray-400,
-html[data-theme="light"] li.text-gray-300,
-html[data-theme="light"] span.text-gray-300,
-html[data-theme="light"] span.text-gray-400 {
-    color: #1e293b !important; /* Slate-800: Bardzo ciemny szary/czarny */
-}
+    /* =========================
+       POPRAWKA: Ujednolicenie tekstów w jasnym motywie (Globalnie)
+       ========================= */
 
-/* Poprawa widoczności niebieskich linków (kontakt) w jasnym motywie */
-html[data-theme="light"] .text-blue-400 {
-    color: #2563eb !important; /* Blue-600: Wyraźny niebieski */
-}
+    /* Wszystkie szare teksty na ciemny kolor w jasnym motywie */
+    html[data-theme="light"] .text-gray-300,
+    html[data-theme="light"] .text-gray-400,
+    html[data-theme="light"] .text-gray-200,
+    html[data-theme="light"] .text-gray-500,
+    html[data-theme="light"] p.text-gray-300,
+    html[data-theme="light"] p.text-gray-400,
+    html[data-theme="light"] li.text-gray-300,
+    html[data-theme="light"] span.text-gray-300,
+    html[data-theme="light"] span.text-gray-400 {
+        color: #1e293b !important; /* Slate-800: Bardzo ciemny szary/czarny */
+    }
 
-html[data-theme="light"] .text-blue-400:hover {
-    color: #1d4ed8 !important; /* Blue-700: Ciemniejszy przy hover */
-}
+    /* Poprawa widoczności niebieskich linków (kontakt) w jasnym motywie */
+    html[data-theme="light"] .text-blue-400 {
+        color: #2563eb !important; /* Blue-600: Wyraźny niebieski */
+    }
 
-/* =========================
-   POPRAWKA (UPDATED): Mobile Comparison Container (Jasny Motyw)
-   Teraz zachowuje ramki i zaokrąglenia, ale ma jasne tło.
-   ========================= */
-html[data-theme="light"] .comparison-container-mobile {
-  background-color: var(--panel-bg) !important;
-  border: 1px solid var(--panel-border) !important;
-  box-shadow: 0 18px 45px rgba(15,23,42,.08) !important;
-  backdrop-filter: blur(10px) saturate(160%);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
-}
+    html[data-theme="light"] .text-blue-400:hover {
+        color: #1d4ed8 !important; /* Blue-700: Ciemniejszy przy hover */
+    }
 
-/* POPRAWKA MOBILNA: Rozwiązanie problemu "białej kreski" (Chromium Mobile Bug) */
-@media (max-width: 1024px) {
-  /* 1. Wyłączamy tło na body w trybie jasnym */
-  html[data-theme="light"] body {
-    background-image: none !important;
-    background-attachment: scroll !important;
-    background-color: transparent !important; /* Body przezroczyste */
-  }
+    /* POPRAWKA MOBILNA: Rozwiązanie problemu "białej kreski" (Chromium Mobile Bug) */
+    @media (max-width: 1024px) {
+      /* 1. Wyłączamy tło na body w trybie jasnym */
+      html[data-theme="light"] body {
+        background-image: none !important;
+        background-attachment: scroll !important;
+        background-color: transparent !important; /* Body przezroczyste */
+      }
 
-  /* 2. Tworzymy niezależną warstwę tła (::before) o pozycji FIXED */
-  html[data-theme="light"] body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -9999;
-    /* Jednolity, spójny gradient dla wersji mobilnej */
-    background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 50%, #cbd5e1 100%);
-    background-size: cover;
-    background-repeat: no-repeat;
-    pointer-events: none;
-    -webkit-transform: translateZ(0); /* Akceleracja GPU */
-    transform: translateZ(0);
-  }
+      /* 2. Tworzymy niezależną warstwę tła (::before) o pozycji FIXED */
+      html[data-theme="light"] body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -9999;
+        /* Jednolity, spójny gradient dla wersji mobilnej */
+        background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 50%, #cbd5e1 100%);
+        background-size: cover;
+        background-repeat: no-repeat;
+        pointer-events: none;
+        -webkit-transform: translateZ(0); /* Akceleracja GPU */
+        transform: translateZ(0);
+      }
 
-  /* Fallback koloru */
-  html[data-theme="light"] {
-    background-color: #f8fafc !important;
-  }
-}
+      /* Fallback koloru */
+      html[data-theme="light"] {
+        background-color: #f8fafc !important;
+      }
+    }
 
-/* =========================
-   SPÓJNOŚĆ CIENI Z INDEX.HTML (TYLKO DARK MODE)
-   ========================= */
+    /* =========================
+       SPÓJNOŚĆ CIENI Z INDEX.HTML (TYLKO DARK MODE)
+       ========================= */
 
-/* 1. Usunięcie cieni z "największych kontenerów" (wrapperów sekcji)
-      Zgodnie z życzeniem, usuwamy wymuszone cienie z głównych kontenerów sekcji.
-      Wcześniej dodane reguły zostały usunięte. */
+    /* 2. CAŁKOWITE USUNIĘCIE CIENI (BOX-SHADOW)
+          Zgodnie z życzeniem, wszystkie elementy są "płaskie" w ciemnym motywie. */
+    html[data-theme="dark"] .service-section,
+    html[data-theme="dark"] .contact-section,
+    html[data-theme="dark"] .system-card,
+    html[data-theme="dark"] .contact-item,
+    html[data-theme="dark"] .contact-section .bg-gray-800.rounded-xl, /* Sekcja Kontakt - Kontener */
+    html[data-theme="dark"] #contact .bg-gray-800, /* Sekcja Kontakt - Alternatywny selector */
+    html[data-theme="dark"] .shadow-2xl,
+    html[data-theme="dark"] .shadow-xl,
+    html[data-theme="dark"] .shadow-lg,
+    html[data-theme="dark"] .shadow-md {
+        box-shadow: none !important;
+    }
 
-/* 2. Małe kontenery "Technologie" (FSR, XeSS, itp.) - Hover & Base
-      Ustawiamy cień identyczny jak w kartach usług w index.html */
-html[data-theme="dark"] .tech-link:hover,
-html[data-theme="dark"] .tech-emoji-card:hover,
-html[data-theme="dark"] .feature-item:hover,
-html[data-theme="dark"] .system-card:hover,
-html[data-theme="dark"] .contact-item:hover {
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
-    border-color: rgba(59, 130, 246, 0.5) !important;
-}
+    /* Usunięcie cieni również na hover w dark mode, aby było "całkowicie czysto" */
+    html[data-theme="dark"] .system-card:hover,
+    html[data-theme="dark"] .contact-item:hover {
+        box-shadow: none !important;
+        /* Zachowujemy tylko ewentualne zmiany obramowania dla feedbacku */
+    }
 
-/* Base state matching index services */
-html[data-theme="dark"] .tech-link,
-html[data-theme="dark"] .tech-emoji-card,
-html[data-theme="dark"] .feature-item,
-html[data-theme="dark"] .system-card,
-html[data-theme="dark"] .contact-item {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
-}
+    /* PRZYWRÓCENIE CIENI DLA PRZYCISKÓW (zgodnie z index.html) */
+    html[data-theme="dark"] .nav-cta-pro {
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.30) !important;
+    }
+    html[data-theme="dark"] .nav-cta-pro:hover {
+        box-shadow: 0 14px 35px rgba(37, 99, 235, 0.40) !important;
+    }
 
-/* 3. Dane kontaktowe (Główny kontener wewnątrz sekcji)
-      To jest ten element: <div class="bg-gray-800 rounded-xl p-8...">
-      Ma mieć cień identyczny jak w index.html */
-html[data-theme="dark"] .contact-section .bg-gray-800.rounded-xl {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
-}
-
-/* 4. Usunięcie kół w tle dla Dark Mode (tak jak w index.html) */
-html[data-theme="dark"] .hero-section::before,
-html[data-theme="dark"] .hero-section::after,
-html[data-theme="dark"] .service-content .absolute,
-html[data-theme="dark"] .tech-showcase-section::before,
-html[data-theme="dark"] .contact-section::before {
-    display: none !important;
-    opacity: 0 !important;
-    background: none !important;
-}
-
-/* 2. CAŁKOWITE USUNIĘCIE CIENI (BOX-SHADOW)
-      Zgodnie z życzeniem, wszystkie elementy są "płaskie" w ciemnym motywie. */
-html[data-theme="dark"] .tech-showcase-section,
-html[data-theme="dark"] .comparison-container,
-html[data-theme="dark"] .comparison-container-mobile,
-html[data-theme="dark"] .service-section,
-html[data-theme="dark"] .contact-section,
-html[data-theme="dark"] .tech-link,
-html[data-theme="dark"] .tech-emoji-card,
-html[data-theme="dark"] .feature-item,
-html[data-theme="dark"] .system-card,
-html[data-theme="dark"] .contact-item,
-html[data-theme="dark"] .contact-section .bg-gray-800.rounded-xl, /* Sekcja Kontakt - Kontener */
-html[data-theme="dark"] #contact .bg-gray-800, /* Sekcja Kontakt - Alternatywny selector */
-html[data-theme="dark"] .stat-card,
-html[data-theme="dark"] .shadow-2xl,
-html[data-theme="dark"] .shadow-xl,
-html[data-theme="dark"] .shadow-lg,
-html[data-theme="dark"] .shadow-md {
-    box-shadow: none !important;
-}
-
-/* Usunięcie cieni również na hover w dark mode, aby było "całkowicie czysto" */
-html[data-theme="dark"] .tech-link:hover,
-html[data-theme="dark"] .tech-emoji-card:hover,
-html[data-theme="dark"] .feature-item:hover,
-html[data-theme="dark"] .system-card:hover,
-html[data-theme="dark"] .contact-item:hover,
-html[data-theme="dark"] .stat-card:hover {
-    box-shadow: none !important;
-    /* Zachowujemy tylko ewentualne zmiany obramowania dla feedbacku */
-}
-
-/* PRZYWRÓCENIE CIENI DLA PRZYCISKÓW (zgodnie z index.html) */
-html[data-theme="dark"] .nav-cta-pro {
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.30) !important;
-}
-html[data-theme="dark"] .nav-cta-pro:hover {
-    box-shadow: 0 14px 35px rgba(37, 99, 235, 0.40) !important;
-}
-
-/* --- POPRAWKA: UKRYCIE KOŁA W STOPCE (TYLKO DARK MODE) --- */
-html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
-  display: none !important;
-}
-
-</style>
+    /* --- POPRAWKA: UKRYCIE KOŁA W STOPCE (TYLKO DARK MODE) --- */
+    html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
+      display: none !important;
+    }
+  </style>
 </head>
 <body class="initial-loading" style="margin: 0px;">
   <div id="root"></div>
@@ -1986,7 +1348,7 @@ html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
 
     // POPRAWIONA FUNKCJA NAWIGACJI DLA MOBILE I DESKTOP
     const handleNavigationFromSystemPage = (target) => {
-        if (window.location.pathname.includes('instalacja-systemow')) {
+        if (window.location.pathname.includes('instalacja-systemow') || window.location.pathname.includes('stronyinternetowe')) {
             // Przejdź do index.html i zapisz informację o sekcji do przewinięcia
             sessionStorage.setItem('scrollToSection', target);
             window.location.href = '/';
@@ -2357,7 +1719,7 @@ html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
             </>
         );
 
-}
+    }
 
     function HeroSection() {
         React.useEffect(() => {
@@ -2375,13 +1737,13 @@ html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
 
         return (
             <section className="hero-section">
-                                <div className="container mx-auto px-6 relative z-10">
+                <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
                         <h1 className="hero-title text-3xl md:text-5xl font-bold text-white mb-4">
-                            Instalacja Systemów Operacyjnych
+                            Tworzenie Stron Internetowych
                         </h1>
                         <p className="hero-subtitle text-lg md:text-xl text-gray-300 leading-relaxed">
-                            Instaluję systemy, konfiguruję sprzęt i optymalizuję wydajność tak, by działał szybciej, stabilniej i dokładnie tak, jak tego potrzebujesz. Niezależnie, czy grasz, pracujesz czy uczysz się - pomogę Ci dobrać najlepsze rozwiązanie dla Twoich potrzeb.
+                            Projektuję nowoczesne i responsywne strony internetowe, które łączą estetykę z realną funkcjonalnością. Każdy projekt tworzę indywidualnie, dopasowując go do potrzeb i celów klienta. Dbam o wysoką wydajność, bezpieczeństwo oraz optymalizację SEO, a dodatkowo zapewniam kompleksowy hosting i wsparcie techniczne.
                         </p>
                     </div>
                 </div>
@@ -2490,7 +1852,7 @@ html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
                                 <div className="flex gap-4 animate-fade-in-up" style={{opacity: isMobile ? 1 : 0, transform: isMobile ? 'translateY(0)' : 'translateY(30px)'}}>
                                     <a href={system.website} target="_blank" rel="noopener noreferrer"
                                        className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors duration-300">
-                                        <span>Oficjalna strona</span>
+                                        <span>Zobacz stronę</span>
                                         <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                                         </svg>
@@ -2537,7 +1899,7 @@ html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
                                 <div className="flex gap-4 animate-fade-in-up" style={{opacity: isMobile ? 1 : 0, transform: isMobile ? 'translateY(0)' : 'translateY(30px)'}}>
                                     <a href={system.website} target="_blank" rel="noopener noreferrer"
                                        className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg transition-colors duration-300">
-                                        <span>Oficjalna strona</span>
+                                        <span>Zobacz stronę</span>
                                         <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                                         </svg>
@@ -2551,59 +1913,32 @@ html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
         );
     }
 
-    function AllSystemsShowcase() {
+    function MyRealizationsShowcase() {
         const systems = [
             {
-                name: "Windows 11",
-                subtitle: "Nowoczesny system Microsoft",
-                type: "windows",
-                image: "w11.png",
-                website: "https://www.microsoft.com/pl-pl/windows/windows-11?r=1",
-                description: "Windows 11 to najnowszy system operacyjny Microsoftu, oferujący odświeżony interfejs, lepszą wydajność i zaawansowane funkcje bezpieczeństwa. Zoptymalizowany pod kątem produktywności i rozrywki.",
+                name: "EraLasera",
+                subtitle: "Profesjonalna renowacja obiektów sakralnych",
+                type: "website",
+                image: "eralasera.png",
+                website: "https://eralasera.pl/",
+                description: "Firma Era Lasera specjalizuje się w renowacji obiektów sakralnych oraz zabytkowych elementów oświetlenia, takich jak żyrandole i kinkiety. Głównym obszarem ich działalności jest wykorzystanie technologii laserowej do precyzyjnego usuwania wieloletnich osadów i zanieczyszczeń z metalu. Metoda ta pozwala na skuteczne odświeżenie delikatnych powierzchni, gwarantując przywrócenie ich pierwotnego blasku bez ryzyka uszkodzenia historycznej materii.",
                 reversed: false
             },
             {
-                name: "Windows X-Lite",
-                subtitle: "Ultra-lekka wersja Windows",
-                type: "windows",
-                image: "xlite.png",
-                website: "https://windowsxlite.com/",
-                description: "Windows X-Lite to zmodyfikowana, ultra-lekka wersja systemu Windows pozbawiona zbędnych komponentów. Oferuje maksymalną wydajność przy minimalnym zużyciu zasobów systemowych. Idealna dla graczy i starszego sprzętu.",
+                name: "Konrad Grzywacz",
+                subtitle: "Korepetycje online z języka angielskiego",
+                type: "website",
+                image: "konradg.png",
+                website: "https://konradgrzywacz.pages.dev/",
+                description: "Konrad Grzywacz świadczy profesjonalne usługi edukacyjne w zakresie nauczania języka angielskiego. Jako magister filologii oferuje indywidualne korepetycje online, które są ukierunkowane na osiągnięcie przez ucznia płynności w komunikacji. Jego działalność opiera się na nowoczesnych metodach nauczania oraz elastycznym podejściu do potrzeb klienta, co pozwala skutecznie przełamywać bariery językowe.",
                 reversed: true
-            },
-            {
-                name: "CachyOS",
-                subtitle: "Ultra-szybka dystrybucja Linux",
-                type: "linux",
-                image: "0004.png",
-                website: "https://cachyos.org/",
-                description: "CachyOS to nowoczesna dystrybucja Linuxa zoptymalizowana pod kątem maksymalnej wydajności. Dzięki zaawansowanym kompilacjom jądra i oprogramowania, oferuje niespotykaną szybkość działania przy zachowaniu pełnej stabilności systemu.",
-                reversed: false
-            },
-            {
-                name: "ZorinOS",
-                subtitle: "Przystępny Linux dla każdego",
-                type: "linux",
-                image: "zorin.png",
-                website: "https://zorin.com/os/",
-                description: "ZorinOS to dystrybucja Linuxa zaprojektowana z myślą o użytkownikach przechodzących z Windows. Oferuje znajomy interfejs i doskonałą kompatybilność z oprogramowaniem.",
-                reversed: true
-            },
-            {
-                name: "Linux Mint",
-                subtitle: "Przystępny i stabilny",
-                type: "linux",
-                image: "mint.png",
-                website: "https://linuxmint.com/",
-                description: "Linux Mint to jedna z najpopularniejszych dystrybucji Linuxa, znana ze swojej stabilności, przystępności i doskonałego wsparcia sprzętowego. Idealny wybór dla początkujących i zaawansowanych użytkowników.",
-                reversed: false
             }
         ];
 
         return (
             <div className="service-section">
                 <h2 className="text-2xl md:text-3xl font-semibold mb-8 text-blue-400 text-center">
-                    Wszystkie Systemy
+                    Moje Realizacje
                 </h2>
 
                 {systems.map((system, index) => (
@@ -2617,405 +1952,7 @@ html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
         );
     }
 
-    function TechnologyComparison() {
-        const [activeComparison, setActiveComparison] = React.useState('windows-x-lite');
-        const sliderRef = React.useRef(null);
-        const containerRef = React.useRef(null);
-        const isDragging = React.useRef(false);
-        const [isMobile, setIsMobile] = React.useState(false);
-
-        React.useEffect(() => {
-            const checkMobile = () => {
-                setIsMobile(window.innerWidth <= 768);
-            };
-
-            checkMobile();
-            window.addEventListener('resize', checkMobile);
-
-            return () => window.removeEventListener('resize', checkMobile);
-        }, []);
-
-        React.useEffect(() => {
-            gsap.fromTo('.rocket-emoji',
-                { scale: 0, rotation: -45 },
-                {
-                    scale: 1,
-                    rotation: 0,
-                    duration: 1,
-                    ease: 'back.out(1.7)',
-                    delay: 0.5
-                }
-            );
-        }, []);
-
-        const comparisons = {
-            'windows-x-lite': {
-                name: "Windows X-Lite",
-                before: { label: "TAA Native | 107 FPS", image: "witcher1.png", fps: "107" },
-                after: { label: "FSR 3.1.5 + FSR FG | 229 FPS", image: "witcher2.png", fps: "229" },
-                description: "Ultra-lekka wersja systemu Windows pozbawiona zbędnych komponentów, oferująca maksymalną wydajność przy minimalnym zużyciu zasobów."
-            },
-            'cachyos': {
-                name: "CachyOS",
-                before: { label: "TAA Native | 84 FPS", image: "taacachy.png", fps: "84" },
-                after: { label: "FSR4 INT8 + XEFG + LSVK | 240 FPS", image: "fsr4cachy.png", fps: "240" },
-                description: "Nowoczesna dystrybucja Linuxa zoptymalizowana pod kątem maksymalnej wydajności dzięki zaawansowanym kompilacjom jądra."
-            }
-        };
-
-        const technologies = [
-            {
-                name: "AMD FSR",
-                url: "https://www.amd.com/en/products/graphics/technologies/fidelityfx/super-resolution.html",
-                vendor: "AMD"
-            },
-            {
-                name: "OptiScaler",
-                url: "https://github.com/optiscaler/OptiScaler",
-                vendor: "Open Source"
-            },
-            {
-                name: "XeSS",
-                url: "https://game.intel.com/us/xess-gaming/",
-                vendor: "Intel"
-            },
-            {
-                name: "DLSS",
-                url: "https://www.nvidia.com/pl-pl/geforce/technologies/dlss/",
-                vendor: "NVIDIA"
-            },
-            {
-                name: "LSVK",
-                url: "https://github.com/PancakeTAS/lsfg-vk",
-                vendor: "Open Source"
-            },
-            {
-                name: "Lossless Scaling",
-                url: "https://store.steampowered.com/app/993090/Lossless_Scaling/",
-                vendor: "Steam"
-            },
-            {
-                name: "AFMF",
-                url: "https://www.amd.com/en/products/software/adrenalin/afmf.html",
-                vendor: "AMD"
-            }
-        ];
-
-        const techEmojis = [
-            {
-                emoji: "🚀",
-                name: "Maksymalna Wydajność",
-                description: "Przyspieszam do granic możliwości"
-            },
-            {
-                emoji: "⚡",
-                name: "Niska Latencja",
-                description: "Płynność ponad wszystko"
-            }
-        ];
-
-        const handleMouseDown = (e) => {
-            e.preventDefault();
-            isDragging.current = true;
-            document.addEventListener('mousemove', handleMouseMove);
-            document.addEventListener('mouseup', handleMouseUp);
-            document.addEventListener('touchmove', handleTouchMove);
-            document.addEventListener('touchend', handleTouchEnd);
-        };
-
-        const handleTouchStart = (e) => {
-            e.preventDefault();
-            isDragging.current = true;
-            document.addEventListener('touchmove', handleTouchMove);
-            document.addEventListener('touchend', handleTouchEnd);
-        };
-
-        const handleMouseMove = (e) => {
-            if (!isDragging.current || !containerRef.current) return;
-
-            e.preventDefault();
-
-            const containerRect = containerRef.current.getBoundingClientRect();
-            const x = e.clientX - containerRect.left;
-            const percentage = (x / containerRect.width) * 100;
-
-            const clampedPercentage = Math.max(0, Math.min(100, percentage));
-
-            if (sliderRef.current) {
-                sliderRef.current.style.left = `${clampedPercentage}%`;
-            }
-
-            const beforeImage = containerRef.current.querySelector('.comparison-before');
-            if (beforeImage) {
-                beforeImage.style.clipPath = `polygon(0 0, ${clampedPercentage}% 0, ${clampedPercentage}% 100%, 0 100%)`;
-            }
-        };
-
-        const handleTouchMove = (e) => {
-            if (!isDragging.current || !containerRef.current) return;
-
-            e.preventDefault();
-
-            const containerRect = containerRef.current.getBoundingClientRect();
-            const x = e.touches[0].clientX - containerRect.left;
-            const percentage = (x / containerRect.width) * 100;
-
-            const clampedPercentage = Math.max(0, Math.min(100, percentage));
-
-            if (sliderRef.current) {
-                sliderRef.current.style.left = `${clampedPercentage}%`;
-            }
-
-            const beforeImage = containerRef.current.querySelector('.comparison-before');
-            if (beforeImage) {
-                beforeImage.style.clipPath = `polygon(0 0, ${clampedPercentage}% 0, ${clampedPercentage}% 100%, 0 100%)`;
-            }
-        };
-
-        const handleMouseUp = () => {
-            isDragging.current = false;
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseup', handleMouseUp);
-        };
-
-        const handleTouchEnd = () => {
-            isDragging.current = false;
-            document.removeEventListener('touchmove', handleTouchMove);
-            document.removeEventListener('touchend', handleTouchEnd);
-        };
-
-        React.useEffect(() => {
-            if (sliderRef.current) {
-                sliderRef.current.style.left = '50%';
-            }
-            const beforeImage = containerRef.current?.querySelector('.comparison-before');
-            if (beforeImage) {
-                beforeImage.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
-            }
-
-            gsap.fromTo('.comparison-container',
-                { opacity: 0, scale: 0.95 },
-                { opacity: 1, scale: 1, duration: 0.8, ease: 'back.out(1.7)' }
-            );
-        }, [activeComparison]);
-
-        const currentComparison = comparisons[activeComparison];
-
-        return (
-            <div className="tech-showcase-section">
-                <div className="text-center mb-12">
-                    <h2 className="hidden md:block text-4xl md:text-5xl font-bold text-white mb-4 inline-flex items-center gap-3">
-                        Przyśpiesz swój komputer
-                        <span
-                            className="floating-emoji rocket-emoji inline-block"
-                            style={{
-                                animation: 'bounce 2s infinite',
-                                fontSize: '2.5rem'
-                            }}
-                        >
-                            🚀
-                        </span>
-                    </h2>
-
-                    <h2 className="md:hidden mobile-title-center text-3xl font-bold text-white mb-4">
-                        Przyśpiesz swój komputer
-                        <span
-                            className="rocket-emoji"
-                            style={{
-                                animation: 'bounce 2s infinite',
-                                fontSize: '2rem'
-                            }}
-                        >
-                            🚀
-                        </span>
-                    </h2>
-
-                    <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                        Zobacz różnicę jaką robi zaawansowana optymalizacja w rzeczywistych warunkach
-                    </p>
-                </div>
-
-                <div className="tech-tabs flex justify-center gap-4 mb-8">
-                    {Object.entries(comparisons).map(([key, tech]) => (
-                        <button
-                            key={key}
-                            className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                                activeComparison === key
-                                    ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-lg shadow-blue-500/25'
-                                    : 'bg-gray-800 text-gray-300 hover:bg-gray-700 border border-gray-700'
-                            }`}
-                            onClick={() => setActiveComparison(key)}
-                        >
-                            {tech.name}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="mb-8 hidden md:block">
-                    <div
-                        ref={containerRef}
-                        className="comparison-container"
-                        style={{ height: '600px' }}
-                    >
-                        <div className="comparison-label comparison-label-before">
-                            {currentComparison.before.label}
-                        </div>
-                        <div className="comparison-label comparison-label-after">
-                            {currentComparison.after.label}
-                        </div>
-
-                        <img
-                            src={`images/${currentComparison.after.image}`}
-                            alt="After optimization"
-                            className="comparison-image"
-                            onError={(e) => {
-                                e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="800" height="600" fill="%231e293b"/><text x="400" y="300" font-family="Arial" font-size="24" fill="%2394a3b8" text-anchor="middle">After Optimization</text></svg>';
-                            }}
-                        />
-                        <img
-                            src={`images/${currentComparison.before.image}`}
-                            alt="Before optimization"
-                            className="comparison-image comparison-before"
-                            onError={(e) => {
-                                e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="800" height="600" fill="%230f172a"/><text x="400" y="300" font-family="Arial" font-size="24" fill="%2394a3b8" text-anchor="middle">Before Optimization</text></svg>';
-                            }}
-                        />
-
-                        <div
-                            ref={sliderRef}
-                            className="comparison-slider"
-                            onMouseDown={handleMouseDown}
-                            onTouchStart={handleTouchStart}
-                            style={{ left: '50%' }}
-                        />
-                    </div>
-                </div>
-
-                <div className="mb-8 md:hidden">
-                    <div className="comparison-container-mobile">
-                        <div className="p-4 text-center">
-                            <div className="comparison-label-vertical comparison-label-before-vertical mb-2">
-                                {currentComparison.before.label}
-                            </div>
-                            <img
-                                src={`images/${currentComparison.before.image}`}
-                                alt="Before optimization"
-                                className="comparison-image-vertical mb-6"
-                                onError={(e) => {
-                                    e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="800" height="600" fill="%230f172a"/><text x="400" y="300" font-family="Arial" font-size="24" fill="%2394a3b8" text-anchor="middle">Before Optimization</text></svg>';
-                                }}
-                            />
-
-                            <div className="comparison-label-vertical comparison-label-after-vertical mb-2">
-                                {currentComparison.after.label}
-                            </div>
-                            <img
-                                src={`images/${currentComparison.after.image}`}
-                                alt="After optimization"
-                                className="comparison-image-vertical"
-                                onError={(e) => {
-                                    e.target.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><rect width="800" height="600" fill="%231e293b"/><text x="400" y="300" font-family="Arial" font-size="24" fill="%2394a3b8" text-anchor="middle">After Optimization</text></svg>';
-                                }}
-                            />
-                        </div>
-                    </div>
-                </div>
-
-                <div className="text-center mt-8 mb-12">
-                    <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                        {currentComparison.description}
-                    </p>
-                </div>
-
-                <div className="technologies-section mt-12 pt-8 border-t border-gray-700">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center mb-8">
-                        Technologie których używam
-                    </h3>
-                    <p className="text-lg text-gray-300 text-center mb-8 max-w-3xl mx-auto">
-                        Wykorzystuję najnowsze technologie upscalingu i generowania klatek, aby maksymalnie zwiększyć wydajność Twojego sprzętu
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {technologies.map((tech, index) => (
-                            <a
-                                key={tech.name}
-                                href={tech.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="tech-link group bg-gray-800/50 hover:bg-gray-700/70 border border-gray-700 hover:border-blue-500 rounded-lg p-4 transition-all duration-300 hover:transform hover:scale-105"
-                            >
-                                <div className="flex flex-col w-full">
-                                    <span className="text-white font-semibold group-hover:text-blue-300 transition-colors duration-300 text-sm md:text-base">
-                                        {tech.name}
-                                    </span>
-                                    <span className="text-gray-400 text-xs md:text-sm mt-1">
-                                        {tech.vendor}
-                                    </span>
-                                </div>
-                            </a>
-                        ))}
-
-                        {techEmojis.map((item, index) => (
-                            <div
-                                key={index}
-                                className="tech-emoji-card group bg-gradient-to-br from-blue-900/30 to-purple-900/30 hover:from-blue-800/40 hover:to-purple-800/40 border border-blue-500/30 hover:border-blue-400 rounded-lg p-4 transition-all duration-500 hover:transform hover:scale-105 flex flex-col items-center justify-center text-center"
-                            >
-                                <div
-                                    className="emoji-animation text-2xl md:text-3xl mb-2"
-                                    style={{
-                                        animation: `bounce 2s infinite ${index * 0.2}s`,
-                                        filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.4))'
-                                    }}
-                                >
-                                    {item.emoji}
-                                </div>
-                                <span className="text-white font-semibold text-sm md:text-base group-hover:text-blue-300 transition-colors duration-300">
-                                    {item.name}
-                                </span>
-                                <span className="text-gray-300 text-xs md:text-sm mt-1">
-                                    {item.description}
-                                </span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    function AdditionalServices() {
-        return (
-            <div className="service-section">
-                <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-12">
-                    Dodatkowe Usługi
-                </h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="feature-item text-center">
-                        <div className="feature-icon mx-auto">
-                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                            </svg>
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-3">Aktualizacja BIOS</h3>
-                        <p className="text-gray-300">Aktualizacja BIOS do najnowszej wersji</p>
-                    </div>
-
-                    <div className="feature-item text-center">
-                        <div className="feature-icon mx-auto">
-                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                            </svg>
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-3">Migracja Danych</h3>
-                        <p className="text-gray-300">Bezpieczny transfer danych ze starego systemu</p>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-        function Contact() {
+    function Contact() {
         return (
             <section id="contact" className="py-24 bg-transparent relative overflow-hidden">
                 <div className="container mx-auto px-4 relative z-10">
@@ -3067,64 +2004,61 @@ html[data-theme="dark"] footer .absolute.inset-0.opacity-5 {
     }
 
     function Footer() {
-    return (
-        <footer className="bg-gray-950 text-gray-300 pb-[calc(2.5rem+env(safe-area-inset-bottom))] relative overflow-hidden">
-    <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 left-1/3 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl"></div>
-    </div>
+        return (
+            <footer className="bg-gray-950 text-gray-300 pb-[calc(2.5rem+env(safe-area-inset-bottom))] relative overflow-hidden">
+                <div className="absolute inset-0 opacity-5">
+                    <div className="absolute top-0 left-1/3 w-64 h-64 bg-blue-500 rounded-full filter blur-3xl"></div>
+                </div>
 
-    <div className="w-full px-6 md:px-12 relative z-10 pt-10">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-                    <div
-                        className="flex flex-col items-center md:items-start select-none cursor-pointer"
-                        role="button"
-                        tabIndex={0}
-                        onClick={() => handleNavigationFromSystemPage('#home')}
-                        onKeyDown={(e) => {
-                            if (e.key === 'Enter' || e.key === ' ') {
-                                e.preventDefault();
-                                handleNavigationFromSystemPage('#home');
-                            }
-                        }}
-                        aria-label="Przejdź do góry"
-                    >
-                        <span className="text-2xl md:text-3xl font-extrabold tracking-tight brand-text leading-none">
-                            Grzywacz<span className="text-blue-500">Tech</span>
-                        </span>
-                        <span className="text-[0.65rem] md:text-[0.7rem] brand-subtext font-medium tracking-[0.2em] uppercase mt-1">
-                            Professional IT Solutions
-                        </span>
-                    </div>
-
-                    <div className="text-sm text-center md:text-right leading-relaxed">
-                        <div className="flex items-center justify-center md:justify-end gap-2 mb-2 flex-wrap md:flex-nowrap">
-                            <a href="https://github.com/grzywkaplrks" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300 flex-shrink-0 self-center" aria-label="Mój profil GitHub">
-                                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                                </svg>
-                            </a>
-                            <p className="flex-grow md:flex-grow-0">© 2026 GrzywaczTech. Bartłomiej Grzywacz. Wszystkie prawa zastrzeżone.</p>
+                <div className="w-full px-6 md:px-12 relative z-10 pt-10">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                        <div
+                            className="flex flex-col items-center md:items-start select-none cursor-pointer"
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => handleNavigationFromSystemPage('#home')}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    handleNavigationFromSystemPage('#home');
+                                }
+                            }}
+                            aria-label="Przejdź do góry"
+                        >
+                            <span className="text-2xl md:text-3xl font-extrabold tracking-tight brand-text leading-none">
+                                Grzywacz<span className="text-blue-500">Tech</span>
+                            </span>
+                            <span className="text-[0.65rem] md:text-[0.7rem] brand-subtext font-medium tracking-[0.2em] uppercase mt-1">
+                                Professional IT Solutions
+                            </span>
                         </div>
-                        <p className="mt-1">Stworzone z pasją do technologii i innowacji.</p>
+
+                        <div className="text-sm text-center md:text-right leading-relaxed">
+                            <div className="flex items-center justify-center md:justify-end gap-2 mb-2 flex-wrap md:flex-nowrap">
+                                <a href="https://github.com/grzywkaplrks" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-300 flex-shrink-0 self-center" aria-label="Mój profil GitHub">
+                                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                                    </svg>
+                                </a>
+                                <p className="flex-grow md:flex-grow-0">© 2026 GrzywaczTech. Bartłomiej Grzywacz. Wszystkie prawa zastrzeżone.</p>
+                            </div>
+                            <p className="mt-1">Stworzone z pasją do technologii i innowacji.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-    );
-}
+            </footer>
+        );
+    }
 
     function ServiceContent() {
         return (
             <div className="pt-24">
                 <HeroSection />
                 <div className="service-content">
-                    <AllSystemsShowcase />
-                    <TechnologyComparison />
-                    <AdditionalServices />
+                    <MyRealizationsShowcase />
                     <Contact />
-
                 </div>
-                    <Footer />
+                <Footer />
             </div>
         );
     }
