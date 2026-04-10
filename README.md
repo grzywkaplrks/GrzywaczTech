@@ -1,6 +1,6 @@
 # <p align="center">🌐 GrzywaczTech</p>
 <p align="center">
-  <strong>Innowacyjne Rozwiązania IT | ML to Code Development | Modern Web Design</strong>
+  <strong>Innowacyjne Rozwiązania IT | ML to Code Development | Projektowanie Systemów Cyfrowych</strong>
 </p>
 
 <p align="center">
@@ -11,42 +11,42 @@
 ---
 
 ### 🏛️ O firmie
-**GrzywaczTech** to nowoczesny podmiot technologiczny, który powstał z połączenia wieloletniej pasji do informatyki z profesjonalnym podejściem do biznesu. Nasza filozofia opiera się na dostarczaniu rozwiązań, które nie tylko rozwiązują bieżące problemy, ale stają się fundamentem rozwoju naszych klientów. 
+**GrzywaczTech** to nowoczesny podmiot technologiczny, który przekształca wieloletnią pasję do informatyki w profesjonalne usługi biznesowe. Nasza filozofia opiera się na dostarczaniu rozwiązań, które stają się fundamentem stabilnego wzrostu naszych klientów.
 
-Jako pionierzy w obszarze **ML to Code**, redefiniujemy sposób tworzenia oprogramowania i stron internetowych, wykorzystując najpotężniejsze modele sztucznej inteligencji do generowania czystego, wydajnego i bezpiecznego kodu.
+Jako pionierzy w obszarze **ML to Code**, redefiniujemy procesy programistyczne poprzez integrację zaawansowanych modeli sztucznej inteligencji, co pozwala na generowanie czystego i wysoce wydajnego kodu.
 
 ---
 
-### 🛠️ Filary naszej działalności
+### 🛠️ Filary działalności
 
-| 🚀 Web Development | 🤖 AI & ML Development | 🖥️ Infrastruktura IT |
+| 🚀 Web Development | 🤖 AI & ML Optimization | 🖥️ Infrastruktura IT |
 | :--- | :--- | :--- |
-| Projektujemy nowoczesne i responsywne witryny, które stają się skutecznym narzędziem sprzedażowym. | Optymalizujemy procesy twórcze dzięki technologii **ML to Code**, skracając czas realizacji przy zachowaniu najwyższych standardów. | Od budowy wysokowydajnych stacji roboczych po optymalizację systemów Linux i Windows. |
+| Projektowanie nowoczesnych, responsywnych witryn internetowych będących skutecznym narzędziem wizerunkowym. | Wykorzystanie technologii **ML to Code** do automatyzacji i optymalizacji procesów twórczych. | Budowa stacji roboczych oraz optymalizacja systemów pod kątem maksymalnej wydajności. |
 
-* **Wsparcie merytoryczne:** Profesjonalna pomoc przy technicznych pracach dyplomowych i projektach inżynierskich.
-* **Doradztwo sprzętowe:** Precyzyjny dobór i konfiguracja komponentów pod specyficzne wymagania (gaming, rendering, ML).
+* **Wsparcie merytoryczne**: Fachowa pomoc przy technicznych projektach inżynierskich i pracach dyplomowych.
+* **Doradztwo strategiczne**: Precyzyjny dobór konfiguracji sprzętowych pod specyficzne wymagania profesjonalne.
 
 ---
 
 ### 🧠 Inteligentny Stos Technologiczny (AI Stack)
-W GrzywaczTech nie tylko śledzimy trendy – my je wdrażamy. Wykorzystujemy zaawansowane modele językowe, aby dostarczać rozwiązania "future-proof":
+W GrzywaczTech wdrażamy rozwiązania "future-proof", opierając się na najpotężniejszych modelach językowych dostępnych na rynku:
 
 <p align="left">
   <img src="https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white" />
   <img src="https://img.shields.io/badge/DeepSeek-4D6BFE?style=for-the-badge&logo=deepseek&logoColor=white" />
   <img src="https://img.shields.io/badge/ChatGPT-412991?style=for-the-badge&logo=openai&logoColor=white" />
-  <img src="https://img.shields.io/badge/Grok_AI-000000?style=for-the-badge&logo=x&logoColor=white" />
-  <img src="https://img.shields.io/badge/Claude_3.5-D97757?style=for-the-badge&logo=anthropic&logoColor=white" />
-  <img src="https://img.shields.io/badge/Manus_AI-6A0DAD?style=for-the-badge&logo=ai&logoColor=white" />
+  <img src="https://img.shields.io/badge/Grok-000000?style=for-the-badge&logo=x&logoColor=white" />
+  <img src="https://img.shields.io/badge/Claude-D97757?style=for-the-badge&logo=anthropic&logoColor=white" />
+  <img src="https://img.shields.io/badge/Manus-6A0DAD?style=for-the-badge&logo=ai&logoColor=white" />
 </p>
 
 ---
 
-### ⚙️ Środowisko Wysokiej Wydajności
-Wierzymy, że jakość usług zaczyna się od narzędzi. Nasze operacje opieramy na systemach o maksymalnej responsywności:
+### ⚙️ Środowisko Pracy o Wysokiej Wydajności
+Nasze operacje opieramy na systemach gwarantujących najwyższą responsywność i stabilność:
 
-* **[CachyOS](https://cachyos.org/):** Wykorzystujemy potęgę Arch Linuxa, zoptymalizowanego pod najnowsze architektury CPU.
-* **[Windows X-Lite](https://windowsxlite.com/):** Pracujemy na odchudzonych, profesjonalnych kompilacjach systemu Windows 11, pozbawionych zbędnych obciążeń.
+* **[CachyOS](https://cachyos.org/)**: Wykorzystujemy potęgę zoptymalizowanego Arch Linuxa dla uzyskania maksymalnej szybkości obliczeniowej.
+* **[Windows X-Lite](https://windowsxlite.com/)**: Korzystamy z odchudzonych kompilacji systemu Windows 11, pozbawionych zbędnych obciążeń systemowych.
 
 <p align="left">
   <img src="https://img.shields.io/badge/Arch_Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white" />
@@ -56,10 +56,10 @@ Wierzymy, że jakość usług zaczyna się od narzędzi. Nasze operacje opieramy
 
 ---
 
-### 🤝 Wybrane Realizacje i Partnerstwa
-Dostarczamy rozwiązania dla liderów w swoich branżach.
+### 🤝 Partnerstwa
+Budujemy trwałe relacje biznesowe, wspierając liderów w ich branżach.
 
-> **Era Lasera** – Pełne wdrożenie wizerunku cyfrowego oraz wsparcie technologiczne dla lidera renowacji laserowej w Polsce.
+> **Era Lasera** – Kompleksowe wdrożenie wizerunku cyfrowego oraz stałe wsparcie technologiczne dla lidera renowacji laserowej.
 
 <p align="center">
   <img width="80%" src="https://github.com/user-attachments/assets/fcb6ae9d-9071-4d7f-8b16-c06e6e56f70d" /><br>
@@ -79,8 +79,8 @@ Dostarczamy rozwiązania dla liderów w swoich branżach.
 ---
 
 ### 📞 Skontaktuj się z nami
-Jesteśmy gotowi, aby przenieść Twój projekt na wyższy poziom technologiczny.
+Przenieśmy Twój projekt na wyższy poziom technologiczny.
 
-* **Infolinia:** [+48 790 260 595](tel:+48790260595)
-* **E-mail:** [grzywacztech@gmail.com](mailto:grzywacztech@gmail.com)
-* **Siedziba cyfrowa:** [www.grzywacztech.pl](https://www.grzywacztech.pl)
+* **Infolinia**: [+48 790 260 595](tel:+48790260595)
+* **E-mail**: [grzywacztech@gmail.com](mailto:grzywacztech@gmail.com)
+* **Siedziba cyfrowa**: [www.grzywacztech.pl](https://www.grzywacztech.pl)
